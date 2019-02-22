@@ -23,7 +23,7 @@ var chartConfig = {
         "parseDates": true,
         "dashLength": 1,
         "minorGridEnabled": true,
-        "labelsEnabled": false,
+        "labelsEnabled": true,
         "tickLength": 0
     },
     "valueAxes": [{
@@ -560,75 +560,58 @@ var chartConfig = {
         "date": "2013-01-13",
         "value": 70
   }, {
-        "date": "2013-01-14",
+        "date": new Date(2013,0,14),
         "value": 70
   }, {
-        "date": "2013-01-15",
+        "date": new Date(2013,0,15),
         "value": 73
   }, {
-        "date": "2013-01-16",
+        "date": new Date(2013,0,16),
         "value": 71
   }, {
-        "date": "2013-01-17",
+        "date": new Date(2013,0,17),
         "value": 74
   }, {
-        "date": "2013-01-18",
+        "date": new Date(2013,0,18),
         "value": 78
   }, {
-        "date": "2013-01-19",
+        "date": new Date(2013,0,19),
         "value": 85
   }, {
-        "date": "2013-01-20",
+        "date": new Date(2013,0,20),
         "value": 82
   }, {
-        "date": "2013-01-21",
+        "date": new Date(2013,0,21),
         "value": 83
   }, {
-        "date": "2013-01-22",
+        "date": new Date(2013,0,22),
         "value": 88
   }, {
-        "date": "2013-01-23",
+        "date": new Date(2013,0,23),
         "value": 85
   }, {
-        "date": "2013-01-24",
+        "date": new Date(2013,0,24),
         "value": 85
   }, {
-        "date": "2013-01-25",
+        "date": new Date(2013,0,25),
         "value": 80
   }, {
-        "date": "2013-01-26",
+        "date": new Date(2013,0,26),
         "value": 87
   }, {
-        "date": "2013-01-27",
+        "date": new Date(2013,0,27),
         "value": 84
   }, {
-        "date": "2013-01-28",
+        "date": new Date(2013,0,28),
         "value": 83
   }, {
-        "date": "2013-01-29",
+        "date": new Date(2013,0,29),
         "value": 84
   }, {
-        "date": "2013-01-30",
+        "date": new Date(2013,0,30),
         "value": 81
   }]
 };
-function changeTresh(){
-    var treshhold1 = parseFloat(document.getElementById("treshhold1").value);
-    var treshhold2 = parseFloat(document.getElementById("treshhold2").value);
-    
-    console.log(treshhold1);
-    console.log(treshhold2);
-    if(treshhold1 & treshhold2 != 0){
-    chartConfig.guides["0"].value = treshhold1;
-    chartConfig.guides["0"].toValue = treshhold2;
-    
-        
-    chartConfig.guides["1"].toValue= treshhold1;
-    
-    chartConfig.guides["2"].value = treshhold2;
-    
-    }
-}
 var chartConfig2 = {
     "type": "serial",
     "theme": "none",
@@ -655,7 +638,7 @@ var chartConfig2 = {
         "parseDates": true,
         "dashLength": 1,
         "minorGridEnabled": true,
-        "labelsEnabled": false,
+        "labelsEnabled": true,
         "tickLength": 0
     },
     "valueAxes": [{
@@ -1175,55 +1158,55 @@ var chartConfig2 = {
         "date": "2013-01-13",
         "value": 720
   }, {
-        "date": "2013-01-14",
+        "date": new Date(2013,0,14),
         "value": 703
   }, {
-        "date": "2013-01-15",
+        "date": new Date(2013,0,15),
         "value": 731
   }, {
-        "date": "2013-01-16",
+        "date": new Date(2013,0,16),
         "value": 711
   }, {
-        "date": "2013-01-17",
+        "date": new Date(2013,0,17),
         "value": 174
   }, {
-        "date": "2013-01-18",
+        "date": new Date(2013,0,18),
         "value": 728
   }, {
-        "date": "2013-01-19",
+        "date": new Date(2013,0,19),
         "value": 835
   }, {
-        "date": "2013-01-20",
+        "date": new Date(2013,0,20),
         "value": 832
   }, {
-        "date": "2013-01-21",
+        "date": new Date(2013,0,21),
         "value": 833
   }, {
-        "date": "2013-01-22",
+        "date": new Date(2013,0,22),
         "value": 881
   }, {
-        "date": "2013-01-23",
+        "date": new Date(2013,0,23),
         "value": 185
   }, {
-        "date": "2013-01-24",
+        "date": new Date(2013,0,24),
         "value": 853
   }, {
-        "date": "2013-01-25",
+        "date": new Date(2013,0,25),
         "value": 280
   }, {
-        "date": "2013-01-26",
+        "date": new Date(2013,0,26),
         "value": 837
   }, {
-        "date": "2013-01-27",
+        "date": new Date(2013,0,27),
         "value": 834
   }, {
-        "date": "2013-01-28",
+        "date": new Date(2013,0,28),
         "value": 833
   }, {
-        "date": "2013-01-29",
+        "date": new Date(2013,0,29),
         "value": 843
   }, {
-        "date": "2013-01-30",
+        "date": new Date(2013,0,30),
         "value": 811
   }]
 };
@@ -1774,68 +1757,93 @@ var chartConfig3 = {
         "date": "2013-01-13",
         "value": 720
   }, {
-        "date": "2013-01-14",
+        "date": new Date(2013,0,14),
         "value": 703
   }, {
-        "date": "2013-01-15",
+        "date": new Date(2013,0,15),
         "value": 731
   }, {
-        "date": "2013-01-16",
+        "date": new Date(2013,0,16),
         "value": 711
   }, {
-        "date": "2013-01-17",
+        "date": new Date(2013,0,17),
         "value": 174
   }, {
-        "date": "2013-01-18",
+        "date": new Date(2013,0,18),
         "value": 728
   }, {
-        "date": "2013-01-19",
+        "date": new Date(2013,0,19),
         "value": 835
   }, {
-        "date": "2013-01-20",
+        "date": new Date(2013,0,20),
         "value": 832
   }, {
-        "date": "2013-01-21",
+        "date": new Date(2013,0,21),
         "value": 833
   }, {
-        "date": "2013-01-22",
+        "date": new Date(2013,0,22),
         "value": 881
   }, {
-        "date": "2013-01-23",
+        "date": new Date(2013,0,23),
         "value": 185
   }, {
-        "date": "2013-01-24",
+        "date": new Date(2013,0,24),
         "value": 853
   }, {
-        "date": "2013-01-25",
+        "date": new Date(2013,0,25),
         "value": 280
   }, {
-        "date": "2013-01-26",
+        "date": new Date(2013,0,26),
         "value": 837
   }, {
-        "date": "2013-01-27",
+        "date": new Date(2013,0,27),
         "value": 834
   }, {
-        "date": "2013-01-28",
+        "date": new Date(2013,0,28),
         "value": 833
   }, {
-        "date": "2013-01-29",
+        "date": new Date(2013,0,29),
         "value": 843
   }, {
-        "date": "2013-01-30",
+        "date": new Date(2013,0,30),
         "value": 811
   }]
 };
 
 var charts = [];
-charts.push(AmCharts.makeChart("chartdiv", chartConfig));
-charts.push(AmCharts.makeChart("chartdiv2", chartConfig2));
-charts.push(AmCharts.makeChart("chartdiv3", chartConfig3));
+var chart1 = AmCharts.makeChart("chartdiv", chartConfig);
+var chart2 = AmCharts.makeChart("chartdiv2", chartConfig2);
+var chart3 = AmCharts.makeChart("chartdiv3", chartConfig3);
+charts.push(chart1);
+charts.push(chart2);
+charts.push(chart3);
 
 for (var x in charts) {
     charts[x].addListener("zoomed", syncZoom);
     charts[x].addListener("init", addCursorListeners);
 }
+chart1.addListener("dataUpdated", zoomChart);
+function changeTresh(){
+    var treshhold1 = parseFloat(document.getElementById("treshhold1").value);
+    var treshhold2 = parseFloat(document.getElementById("treshhold2").value);
+    
+    console.log(treshhold1);
+    console.log(treshhold2);
+    if(treshhold1 != 0 && treshhold2 != 0){
+    charts[0].guides[0].value = treshhold1;
+    charts[0].guides[0].toValue = treshhold2;
+        
+    charts[0].guides[1].toValue = treshhold1;
+        
+    charts[0].guides[2].value = treshhold2;
+        
+    AmCharts.charts[0].validateData();
+    }
+}
+ function zoomChart() {
+   chart3.zoomToDates(new Date(2013,0,27), new Date(2013,0,30));
+ }
+
 
 function addCursorListeners(event) {
     event.chart.chartCursor.addListener("changed", handleCursorChange);
