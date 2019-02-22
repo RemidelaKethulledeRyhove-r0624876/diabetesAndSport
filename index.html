@@ -25,6 +25,15 @@
     <div id="calendar"></div>
 
     <div id="inputFields">
+        <p>Zoom the map between dates:</p>
+            <label for="dateFrom">Minimum value:</label>
+        <input type="date" name="dateFrom" id="dateFrom"><br>
+        <label for="dateTo">Maximum value:</label>
+        <input type="date" name="dateTo" id="dateTo">
+        <input type="button" value="Zoom" id="btnZoom" onclick="zoomMap()">
+    </div>
+    <div id="inputFields">
+        <p>Change the tresshold:</p>
         <label for="treshhold1">Minimum value:</label>
         <input type="number" name="treshhold1" id="treshhold1"><br>
         <label for="treshhold2">Maximum value:</label>

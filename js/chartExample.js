@@ -1821,8 +1821,8 @@ charts.push(chart3);
 for (var x in charts) {
     charts[x].addListener("zoomed", syncZoom);
     charts[x].addListener("init", addCursorListeners);
+    charts[x].addListener("rendered", zoomChart);
 }
-chart1.addListener("dataUpdated", zoomChart);
 function changeTresh(){
     var treshhold1 = parseFloat(document.getElementById("treshhold1").value);
     var treshhold2 = parseFloat(document.getElementById("treshhold2").value);
@@ -1841,8 +1841,20 @@ function changeTresh(){
     }
 }
  function zoomChart() {
+    /* change this to the current date when obtained real data.*/
    chart3.zoomToDates(new Date(2013,0,27), new Date(2013,0,30));
  }
+
+function zoomMap(){
+    var dateFromTemp = document.getElementById("dateFrom").value;
+    var dateToTemp = document.getElementById("dateTo").value;
+
+    
+    var dateFrom = new Date(dateFromTemp);
+    var dateTo = new Date(dateToTemp);
+    
+    chart3.zoomToDates(dateFrom, dateTo);
+}
 
 
 function addCursorListeners(event) {
