@@ -9,7 +9,7 @@ var chartConfig = {
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
-    "dataDateFormat": "DD/MM/YYYY HH:MM",
+    "dataDateFormat": "D/MM/YYYY J:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
@@ -27,8 +27,8 @@ var chartConfig = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "datesParser" : true,
-        "periodMin" : "hh",
+        "parseDates" : true,
+        "minPeriod" : "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "labelsEnabled": true,
@@ -67,7 +67,7 @@ var chartConfig2 = {
     "theme": "none",
     "marginLeft": 70,
     "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "DD/MM/YYYY HH:MM",
+    "dataDateFormat": "D/MM/YYYY J:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
@@ -85,8 +85,8 @@ var chartConfig2 = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "datesParser" : true,
-        "periodMin" : "hh",
+        "parseDates" : true,
+        "minPeriod" : "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "labelsEnabled": true,
@@ -101,15 +101,12 @@ var chartConfig3 = {
         "dataLoader": {
         "url": "datafiles/dummyData.json",
         "format": "json",
-                "showErrors": true,
-        "noStyles": true,
-        "async": true
     },
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "DD/MM/YYYY HH:MM",
+    "dataDateFormat": "D/MM/YYYY J:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
@@ -129,8 +126,8 @@ var chartConfig3 = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "datesParser" : true,
-        "periodMin" : "hh",
+        "parseDates" : true,
+        "minPeriod" : "hh",
         "dashLength": 1,
         "minorGridEnabled": true
     },
@@ -173,8 +170,11 @@ function changeTresh() {
 function zoomMap() {
     var dateFromTemp = document.getElementById("dateFrom").value;
     var dateToTemp = document.getElementById("dateTo").value;
+    
+    var dateFrom = new Date(dateFromTemp);
+    var dateTo = new Date(dateToTemp)
 
-    chart3.zoomToValues(dateFrom, dateTo);
+    chart3.zoomToDates(dateFrom, dateTo);
 }
 
 function addCursorListeners(event) {
