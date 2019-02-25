@@ -1,14 +1,27 @@
 var chartConfig = {
-    "dataLoader": {
-        "url": "datafiles/dummyData.json",
-        "format": "json",
-        "showErrors": true,
-        "noStyles": true,
-        "async": true
-    },
+    "datasets": [{
+        "title": "Voedingsdagboek",
+        "dataLoader": {
+            "url": "datafiles/voedingsdagboek.json",
+            "format": "json",
+            "showErrors": true,
+            "noStyles": true,
+            "async": true
+        }
+    }, {
+        "title": "Glucose",
+        "dataLoader": {
+            "url": "datafiles/dummyData.json",
+            "format": "json",
+            "showErrors": true,
+            "noStyles": true,
+            "async": true
+        }
+    }],
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
+    "synchronizeGrid": true,
     "dataDateFormat": "D-MM-YYYY J:NN",
     "valueAxes": [{
         "id": "v1",
@@ -18,7 +31,7 @@ var chartConfig = {
         "position": "left"
     }, {
         "id": "v2",
-        "axisColor": "#000000",
+        "axisColor": "red",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
@@ -36,6 +49,12 @@ var chartConfig = {
         "useLineColorForBulletBorder": true,
         "title": "Glucose values",
         "valueField": "Historie glucose (mg/dL)"
+  }, {
+        valueAxis: "v2",
+        "balloonText": "[Voeding: [[Voeding], Drank: [Drank]]",
+        "columnWidth": 20,
+        "title": "Food",
+        "valueField": "Ingeschatte hoeveelheid koolhydraten"
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
