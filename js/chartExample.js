@@ -55,6 +55,7 @@ var chartConfig = {
         fillColor: "#FF0000"
 }]
 };
+
 var chartConfig2 = {
         "dataLoader": {
         "url": "datafiles/dummyData.json",
