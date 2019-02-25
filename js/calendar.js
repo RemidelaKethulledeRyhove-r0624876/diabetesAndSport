@@ -15,31 +15,37 @@ $(document).ready(function() {
           id: 999,
           title: 'Running',
           start: '2019-01-09T16:00:00',
-            end: '2019-01-09T17:30:00'
+            end: '2019-01-09T17:30:00',
+            color: "red",
+            backgroundColor: "orange"
         },
         {
           id: 999,
           title: 'Running',
           start: '2019-01-16T16:00:00',
-            end: '2019-01-16T17:30:00'
+            end: '2019-01-16T17:30:00',
+            color: "red"
         },
         {
           id: 999,
           title: 'Running',
           start: '2019-01-18T16:00:00',
-            end: '2019-01-18T17:30:00'
+            end: '2019-01-18T17:30:00',
+            color: "red"
         },
         {
           id: 999,
           title: 'Running',
           start: '2019-01-20T16:00:00',
-            end: '2019-01-20T17:30:00'
+            end: '2019-01-20T17:30:00',
+            color: "red"
         },
         {
           id: 999,
           title: 'Running',
           start: '2019-01-22T16:00:00',
-            end: '2019-01-22T17:30:00'
+            end: '2019-01-22T17:30:00',
+            color: "red"
         },
         {
           id: 777,
