@@ -2,14 +2,14 @@ var chartConfig = {
     "dataLoader": {
         "url": "datafiles/dummyData.json",
         "format": "json",
-                "showErrors": true,
+        "showErrors": true,
         "noStyles": true,
         "async": true
     },
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
-    "dataDateFormat": "D/MM/YYYY J:NN",
+    "dataDateFormat": "D-MM-YYYY J:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
@@ -27,8 +27,8 @@ var chartConfig = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "parseDates" : true,
-        "minPeriod" : "hh",
+        "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "labelsEnabled": true,
@@ -57,10 +57,10 @@ var chartConfig = {
 };
 
 var chartConfig2 = {
-        "dataLoader": {
+    "dataLoader": {
         "url": "datafiles/dummyData.json",
         "format": "json",
-                "showErrors": true,
+        "showErrors": true,
         "noStyles": true,
         "async": true
     },
@@ -86,8 +86,8 @@ var chartConfig2 = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "parseDates" : true,
-        "minPeriod" : "hh",
+        "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "labelsEnabled": true,
@@ -99,7 +99,7 @@ var chartConfig2 = {
 };
 
 var chartConfig3 = {
-        "dataLoader": {
+    "dataLoader": {
         "url": "datafiles/dummyData.json",
         "format": "json",
     },
@@ -127,8 +127,8 @@ var chartConfig3 = {
     },
     "categoryField": "Tijd",
     "categoryAxis": {
-        "parseDates" : true,
-        "minPeriod" : "hh",
+        "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true
     },
@@ -171,7 +171,7 @@ function changeTresh() {
 function zoomMap() {
     var dateFromTemp = document.getElementById("dateFrom").value;
     var dateToTemp = document.getElementById("dateTo").value;
-    
+
     var dateFrom = new Date(dateFromTemp);
     var dateTo = new Date(dateToTemp)
 
