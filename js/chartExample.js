@@ -10,7 +10,21 @@ var chartConfig = {
     "theme": "none",
     "marginLeft": 70,
     "dataDateFormat": "D-MM-YYYY J:NN",
+    "valueAxes": [{
+        "id": "v1",
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+    }, {
+        "id": "v2",
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
+    }],
     "graphs": [{
+        valueAxis: "v1",
         "bullet": "round",
         "bulletBorderAlpha": 1,
         "bulletColor": "#FFFFFF",
@@ -20,6 +34,7 @@ var chartConfig = {
         "lineColor": "#000000",
         "title": "red line",
         "useLineColorForBulletBorder": true,
+        "title": "Glucose values",
         "valueField": "Historie glucose (mg/dL)"
   }],
     "chartCursor": {
