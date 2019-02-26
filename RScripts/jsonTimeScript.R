@@ -26,5 +26,6 @@ t <- sapply(t,  function(x){
 
 json_data$Tijd <- t
 
-
+exportJson <- toJSON(json_data, pretty=TRUE)
+write(exportJson, "dataFiles/dateParsed.json")
 
