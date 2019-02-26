@@ -24,7 +24,7 @@ var chartConfig = {
     "theme": "none",
     "marginLeft": 70,
     "synchronizeGrid": true,
-    "dataDateFormat": "D-M-YYYY J:NN",
+    "dataDateFormat": "D-MM-YYYY J:NN",
     /*    "valueAxes": [{
             "id": "v1",
             "axisColor": "#000000",
@@ -222,7 +222,6 @@ function addCursorListeners(event) {
 }
 
 function syncZoom(event) {
-    console.log(event);
     for (x in charts) {
         if (charts[x].ignoreZoom) {
             charts[x].ignoreZoom = false;
