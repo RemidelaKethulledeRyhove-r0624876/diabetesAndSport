@@ -1,5 +1,39 @@
 var chartConfig = {
-    /*    "datasets": [
+/*    "dataSets" : [
+         {
+		title: "Glucose",
+		fieldMappings: [ {
+			fromField: "Historie glucose (mg/dL)",
+			toField: "Historie glucose (mg/dL)"
+		}],
+		dataLoader: {
+            "url": "datafiles/dateParsed.json",
+        "format": "json",
+        "showErrors": true,
+        "noStyles": true,
+        "async": true
+		},
+		categoryField: "Tijd"
+	}, {
+		title: "Voeding",
+		fieldMappings: [ {
+			fromField: "Ingeschatte hoeveelheid koolhydraten",
+			toField: "Ingeschatte hoeveelheid koolhydraten"
+		}, {
+			fromField: "Aantal eenheden insuline",
+			toField: "Aantal eenheden insuline"
+		} ],
+		dataLoader: {
+                    "url": "datafiles/voedingsdagboek.json",
+                    "format": "json",
+                    "showErrors": true,
+                    "noStyles": true,
+                    "async": true
+		},
+		categoryField: "Tijd"
+	}
+    ],
+        "datasets": [
             {
                 "title": "Voedingsdagboek",
                 "dataLoader": {
@@ -9,23 +43,23 @@ var chartConfig = {
                     "noStyles": true,
                     "async": true
                 }
-            },
-            {*/
+            },*/
+            /*{*/
     "dataLoader": {
-        "url": "datafiles/dummyData.json",
+        "url": "datafiles/dateParsed.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
         "async": true
     }
-    /*}]*/
+/*    }]*/
     ,
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "synchronizeGrid": true,
-    "dataDateFormat": "D-MM-YYYY J:NN",
-    /*    "valueAxes": [{
+    "dataDateFormat": "DD-MM-YYYY JJ:NN",
+/*        "valueAxes": [{
             "id": "v1",
             "axisColor": "#000000",
             "axisThickness": 2,
@@ -39,7 +73,7 @@ var chartConfig = {
             "position": "right"
         }],*/
     "graphs": [{
-            /*        valueAxis: "v1",*/
+/*            "valueAxis": "v1",*/
             "bullet": "round",
             "bulletBorderAlpha": 1,
             "bulletColor": "#FFFFFF",
@@ -51,9 +85,9 @@ var chartConfig = {
             "useLineColorForBulletBorder": true,
             "title": "Glucose values",
             "valueField": "Historie glucose (mg/dL)"
-  }
-        /*, {
-                valueAxis: "v2",
+  }/*
+        , {
+                "valueAxis": "v2",
                 "balloonText": "[Voeding: [[Voeding], Drank: [Drank]]",
                 "columnWidth": 20,
                 "title": "Food",
@@ -96,7 +130,7 @@ var chartConfig = {
 
 var chartConfig2 = {
     "dataLoader": {
-        "url": "datafiles/dummyData.json",
+        "url": "datafiles/dateParsed.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
@@ -106,7 +140,7 @@ var chartConfig2 = {
     "theme": "none",
     "marginLeft": 70,
     "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "D/MM/YYYY J:NN",
+    "dataDateFormat": "DD/MM/YYYY JJ:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
@@ -138,14 +172,14 @@ var chartConfig2 = {
 
 var chartConfig3 = {
     "dataLoader": {
-        "url": "datafiles/dummyData.json",
+        "url": "datafiles/dateParsed.json",
         "format": "json",
     },
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "D/MM/YYYY J:NN",
+    "dataDateFormat": "DD/MM/YYYY JJ:NN",
     "graphs": [{
         "bullet": "round",
         "bulletBorderAlpha": 1,
