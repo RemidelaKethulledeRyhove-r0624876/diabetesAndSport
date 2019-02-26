@@ -1,61 +1,65 @@
 var chartConfig = {
-    "datasets": [{
-        "title": "Voedingsdagboek",
-        "dataLoader": {
-            "url": "datafiles/voedingsdagboek.json",
-            "format": "json",
-            "showErrors": true,
-            "noStyles": true,
-            "async": true
-        }
-    }, {
-        "title": "Glucose",
-        "dataLoader": {
-            "url": "datafiles/dummyData.json",
-            "format": "json",
-            "showErrors": true,
-            "noStyles": true,
-            "async": true
-        }
-    }],
+    /*    "datasets": [
+            {
+                "title": "Voedingsdagboek",
+                "dataLoader": {
+                    "url": "datafiles/voedingsdagboek.json",
+                    "format": "json",
+                    "showErrors": true,
+                    "noStyles": true,
+                    "async": true
+                }
+            },
+            {*/
+    "dataLoader": {
+        "url": "datafiles/dummyData.json",
+        "format": "json",
+        "showErrors": true,
+        "noStyles": true,
+        "async": true
+    }
+    /*}]*/
+    ,
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "synchronizeGrid": true,
-    "dataDateFormat": "D-MM-YYYY J:NN",
-    "valueAxes": [{
-        "id": "v1",
-        "axisColor": "#000000",
-        "axisThickness": 2,
-        "axisAlpha": 1,
-        "position": "left"
-    }, {
-        "id": "v2",
-        "axisColor": "red",
-        "axisThickness": 2,
-        "axisAlpha": 1,
-        "position": "right"
-    }],
+    "dataDateFormat": "D-M-YYYY J:NN",
+    /*    "valueAxes": [{
+            "id": "v1",
+            "axisColor": "#000000",
+            "axisThickness": 2,
+            "axisAlpha": 1,
+            "position": "left"
+        }, {
+            "id": "v2",
+            "axisColor": "red",
+            "axisThickness": 2,
+            "axisAlpha": 1,
+            "position": "right"
+        }],*/
     "graphs": [{
-        valueAxis: "v1",
-        "bullet": "round",
-        "bulletBorderAlpha": 1,
-        "bulletColor": "#FFFFFF",
-        "bulletSize": 5,
-        "hideBulletsCount": 50,
-        "lineThickness": 2,
-        "lineColor": "#000000",
-        "title": "red line",
-        "useLineColorForBulletBorder": true,
-        "title": "Glucose values",
-        "valueField": "Historie glucose (mg/dL)"
-  }, {
-        valueAxis: "v2",
-        "balloonText": "[Voeding: [[Voeding], Drank: [Drank]]",
-        "columnWidth": 20,
-        "title": "Food",
-        "valueField": "Ingeschatte hoeveelheid koolhydraten"
-  }],
+            /*        valueAxis: "v1",*/
+            "bullet": "round",
+            "bulletBorderAlpha": 1,
+            "bulletColor": "#FFFFFF",
+            "bulletSize": 5,
+            "hideBulletsCount": 50,
+            "lineThickness": 2,
+            "lineColor": "#000000",
+            "title": "red line",
+            "useLineColorForBulletBorder": true,
+            "title": "Glucose values",
+            "valueField": "Historie glucose (mg/dL)"
+  }
+        /*, {
+                valueAxis: "v2",
+                "balloonText": "[Voeding: [[Voeding], Drank: [Drank]]",
+                "columnWidth": 20,
+                "title": "Food",
+                "valueField": "Ingeschatte hoeveelheid koolhydraten"
+          }*/
+        ],
     "chartCursor": {
         "categoryBalloonEnabled": false
     },
@@ -218,6 +222,7 @@ function addCursorListeners(event) {
 }
 
 function syncZoom(event) {
+    console.log(event);
     for (x in charts) {
         if (charts[x].ignoreZoom) {
             charts[x].ignoreZoom = false;
