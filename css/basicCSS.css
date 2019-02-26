@@ -20,3 +20,9 @@ body {
   width: 100%;
   height: 200px;
 }
+
+#chart {
+  background: #fff;
+  margin: 5px;
+}
+}
