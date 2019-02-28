@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1546387200000,
+    "bolus_type": "bolus_type1",
+    "bolus_volume_selected": 10,
+    "bolus_volume_delivered": 8.5,
+    "basal_ins": 23
+  },
+  {
+    "id": 1547164800000,
+    "bolus_type": "bolus_type2",
+    "bolus_volume_selected": 6.5,
+    "bolus_volume_delivered": 5.6,
+    "basal_ins": 13.5
+  },
+  {
+    "id": 1547942400000,
+    "bolus_type": "bolus_type3",
+    "bolus_volume_selected": 9.4,
+    "bolus_volume_delivered": 9,
+    "basal_ins": 6.2
+  },
+  {
+    "id": 1548288000000,
+    "bolus_type": "bolus_type4",
+    "bolus_volume_selected": 13.6,
+    "bolus_volume_delivered": 10.6,
+    "basal_ins": 16.3
+  },
+  {
+    "id": 1548633600000,
+    "bolus_type": "bolus_type5",
+    "bolus_volume_selected": 8.9,
+    "bolus_volume_delivered": 5.2,
+    "basal_ins": 12.4
+  }
+]
