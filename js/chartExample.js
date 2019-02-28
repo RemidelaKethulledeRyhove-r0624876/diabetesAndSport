@@ -102,6 +102,7 @@ var chartConfig = {
 
 var chartConfig2 = {
     "dataLoader": {
+        /*SELECT bol.id * 1000 as id, bolus_type, bolus_volume_selected, bolus_volume_delivered, basal_ins FROM diabetes.bolus_ins_data as bol inner join diabetes.basal_ins_data as bas on(bol.upload_id = bas.upload_id);*/
         "url": "datafiles/ins.json",
         "format": "json",
         "showErrors": true,
@@ -116,6 +117,7 @@ var chartConfig2 = {
         "title": "Ins Bolus",
         "type": "column",
         "lineColor": "#000000",
+        "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_deliverd]]",
         "valueField": "bolus_volume_delivered",
         "valueAxis": "v1"
   }, {
