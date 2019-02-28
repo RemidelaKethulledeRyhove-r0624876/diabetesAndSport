@@ -10,12 +10,13 @@ function init(stats) {
         data: stats,
         dataType: "txt",
         domain: "month",
-        start: new Date(2018, 9, 1),
+        start: new Date(2019, 0, 1),
         cellSize: 20,
         legendCellSize: 20,
         itemName: ["glucose"],
         legend: [100, 200],
-        colLimit: 31,
+        colLimit: 66,
+        range: 12,
         verticalOrientation: true,
         onClick: function(stats) {
             
@@ -32,31 +33,35 @@ function setData() {
     var stats = {};
     var times= [];
 
-    d3.json("datafiles/dummyData.json", function (data) {
+    //d3.json("datafiles/dummyData.json", function (data) {
+    d3.json("datafiles/bgDatabase.json", function (data) {
         var date;
         data.forEach(function (d) {
             //console.log(d.Tijd + "test");
-            d.Tijd += ":00";
-            d.glucose = d["Historie glucose (mg/dL)"];
+            //d.Tijd += ":00";
+            //d.glucose = d["Historie glucose (mg/dL)"];
+            d.glucose = +d.bg;
+            d.id = +d.id;
+            console.log(d.id+"hello");
             //console.log(d.glucose + "test2");
-            if (d.Tijd.substring(0, 2).includes("/")) {
-                d.Tijd = "0" + d.Tijd;
-            }
-            var dateString = d.Tijd.substr(3, 2) + "/" + d.Tijd.substr(0, 2) + "/" + d.Tijd.substr(6, 4);
+            //if (d.Tijd.substring(0, 2).includes("/")) {
+            //    d.Tijd = "0" + d.Tijd;
+            //}
+            //var dateString = d.Tijd.substr(3, 2) + "/" + d.Tijd.substr(0, 2) + "/" + //d.Tijd.substr(6, 4);
             //console.log(dateString + "hello");
-            var timeStamp = moment(dateString).unix();
+            //var timeStamp = moment(dateString).unix();
             //timeStamp = '"' + timeStamp + '"';
             //timeStamp = timeStamp.replace(':', "test")
-            console.log(Object.keys(stats) + "whuut");
-            times.push(timeStamp);
-            console.log(times+"helllloooo");
-            stats[timeStamp] = d.glucose;
+            //console.log(Object.keys(stats) + "whuut");
+            //times.push(timeStamp);
+            //console.log(times+"helllloooo");
+            stats[d.id] = d.glucose;
             //stats.map(groupday);
             //stats.map(groupday);
             //alert(ts);
         });
         //console.log(stats[1] + "help2");
-        //console.log(stats);
+        console.log(stats);
         return init(stats);
     })
 }
