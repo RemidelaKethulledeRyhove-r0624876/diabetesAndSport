@@ -32,8 +32,8 @@ var chartConfig = {
 		},
 		categoryField: "Tijd"
 	}
-    ],
-        "datasets": [
+    ],*/
+/*        "datasets": [
             {
                 "title": "Voedingsdagboek",
                 "dataLoader": {
@@ -51,15 +51,15 @@ var chartConfig = {
         "showErrors": true,
         "noStyles": true,
         "async": true
-    }
+    },
 /*    }]*/
-    ,
+/*    ,*/
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "synchronizeGrid": true,
     "dataDateFormat": "DD-MM-YYYY JJ:NN",
-/*        "valueAxes": [{
+        "valueAxes": [{
             "id": "v1",
             "axisColor": "#000000",
             "axisThickness": 2,
@@ -71,9 +71,9 @@ var chartConfig = {
             "axisThickness": 2,
             "axisAlpha": 1,
             "position": "right"
-        }],*/
+        }],
     "graphs": [{
-/*            "valueAxis": "v1",*/
+            "valueAxis": "v1",
             "bullet": "round",
             "bulletBorderAlpha": 1,
             "bulletColor": "#FFFFFF",
@@ -88,7 +88,6 @@ var chartConfig = {
   }/*
         , {
                 "valueAxis": "v2",
-                "balloonText": "[Voeding: [[Voeding], Drank: [Drank]]",
                 "columnWidth": 20,
                 "title": "Food",
                 "valueField": "Ingeschatte hoeveelheid koolhydraten"
