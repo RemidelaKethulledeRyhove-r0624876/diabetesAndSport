@@ -17,6 +17,10 @@ function init(stats) {
         legend: [100, 200],
         colLimit: 31,
         verticalOrientation: true,
+        onClick: function(stats) {
+            
+		console.log("test");
+	},
         label: {
             position: "left",
         },
@@ -43,10 +47,12 @@ function setData() {
             var timeStamp = moment(dateString).unix();
             //timeStamp = '"' + timeStamp + '"';
             //timeStamp = timeStamp.replace(':', "test")
-            //console.log(timeStamp + "whuut");
+            console.log(Object.keys(stats) + "whuut");
             times.push(timeStamp);
-            //sameDay(timeStamp, d.glucose, times);
+            console.log(times+"helllloooo");
             stats[timeStamp] = d.glucose;
+            //stats.map(groupday);
+            //stats.map(groupday);
             //alert(ts);
         });
         //console.log(stats[1] + "help2");
@@ -55,18 +61,13 @@ function setData() {
     })
 }
 
-/*
-function sameDay(date, glucose, times){
-    if (glucose == null){
-        return ;
-    }
-    var da = new Date(date);
-    console.log(da+"killl");
-    times.forEach(function (d){
-        console.log(d+"key")
-        //var d1 = new Date(d.)
-                  var month = da.getMonth();
-                  })
-}
-*/
+var byday={};
 
+function groupday(value, index, array)
+{
+    console.log("test");
+    var d = new Date(value['date']);
+    d = Math.floor(d.getTime()/(1000*60*60*24));
+    byday[d]=byday[d]||[];
+    byday[d].push(value);
+}
