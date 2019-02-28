@@ -1,6 +1,8 @@
+
+
 function init(stats) {
     //console.log(Object.values(stats) + "help");
-    var whut = JSON.stringify(stats);
+    //var whut = JSON.stringify(stats);
     //console.log(whut+ "help3");
     var cal = new CalHeatMap();
     cal.init({
@@ -8,7 +10,7 @@ function init(stats) {
         data: stats,
         dataType: "txt",
         domain: "month",
-        start: new Date(2019, 0, 26),
+        start: new Date(2018, 9, 1),
         cellSize: 20,
         legendCellSize: 20,
         itemName: ["glucose"],
@@ -24,6 +26,7 @@ setData();
 
 function setData() {
     var stats = {};
+    var times= [];
 
     d3.json("datafiles/dummyData.json", function (data) {
         var date;
@@ -41,6 +44,8 @@ function setData() {
             //timeStamp = '"' + timeStamp + '"';
             //timeStamp = timeStamp.replace(':', "test")
             //console.log(timeStamp + "whuut");
+            times.push(timeStamp);
+            //sameDay(timeStamp, d.glucose, times);
             stats[timeStamp] = d.glucose;
             //alert(ts);
         });
@@ -49,4 +54,19 @@ function setData() {
         return init(stats);
     })
 }
+
+/*
+function sameDay(date, glucose, times){
+    if (glucose == null){
+        return ;
+    }
+    var da = new Date(date);
+    console.log(da+"killl");
+    times.forEach(function (d){
+        console.log(d+"key")
+        //var d1 = new Date(d.)
+                  var month = da.getMonth();
+                  })
+}
+*/
 
