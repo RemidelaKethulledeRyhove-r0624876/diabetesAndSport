@@ -6,28 +6,64 @@ function init(stats) {
     //console.log(whut+ "help3");
     var cal = new CalHeatMap();
     cal.init({
+        
         id: "#cal-heatmap",
         data: stats,
         dataType: "txt",
         domain: "month",
         start: new Date(2019, 0, 1),
+        subDomainTextFormat: "%d",
         cellSize: 20,
         legendCellSize: 20,
         itemName: ["glucose"],
         legend: [100, 200],
         colLimit: 66,
+        domainDynamicDimension: false,
         range: 12,
         verticalOrientation: true,
-        onClick: function(stats) {
-            
-		console.log("test");
+        onClick: function(date, nb) {
+            var cal2 = new CalHeatMap();
+            dayData(date, stats, cal2);
 	},
         label: {
             position: "left",
         },
+        legendColors: {
+		empty: "#ededed",
+		min: "#40ffd8",
+		max: "#f20013"
+	},
     });
 }
 setData();
+
+function dayData(date,stats, cal2){
+    console.log(date),
+              cal2.init({
+        id: "#cal-heatmap",
+        data: stats,
+        dataType: "txt",
+        domain: "day",
+        start: new Date(date),
+        cellSize: 20,
+        legendCellSize: 20,
+        itemName: ["glucose"],
+        legend: [100, 200],
+        colLimit: 66,
+        range: 1,
+        verticalOrientation: true,
+        label: {
+            position: "left",
+        },
+           legendColors: {
+		empty: "#ededed",
+		min: "#40ffd8",
+		max: "#f20013"
+	},
+    });
+            
+		console.log("test");
+	}
 
 function setData() {
     var stats = {};
