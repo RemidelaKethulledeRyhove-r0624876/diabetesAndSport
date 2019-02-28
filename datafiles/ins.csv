@@ -1,0 +1,6 @@
+id,bolus_type,bolus_volume_selected,bolus_volume_delivered,basal_ins
+1546387200000,bolus_type1,10,8.5,23
+1547164800000,bolus_type2,6.5,5.6,13.5
+1547942400000,bolus_type3,9.4,9,6.2
+1548288000000,bolus_type4,13.6,10.6,16.3
+1548633600000,bolus_type5,8.9,5.2,12.4

@@ -1,5 +1,6 @@
 var chartConfig = {
     "dataLoader": {
+        /* SELECT id * 1000, bg FROM diabetes.bg_data;*/
         "url": "datafiles/bgDatabase.json",
         "format": "json",
         "showErrors": true,
@@ -9,6 +10,7 @@ var chartConfig = {
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
+    "marginRight": 70,
     "synchronizeGrid": true,
     "valueAxes": [{
         "id": "v1",
@@ -43,10 +45,36 @@ var chartConfig = {
     },
     "categoryField": "id",
     "categoryAxis": {
+        "parseDates": true,
         "dashLength": 1,
         "minorGridEnabled": true,
-        "labelsEnabled": true,
-        "tickLength": 0
+        "dateFormats": [{
+                period: 'fff',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'ss',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'mm',
+                format: 'JJ:NN'
+      }, {
+                period: 'hh',
+                format: 'JJ:NN'
+      }, {
+                period: 'DD',
+                format: 'DD/MM/YYYY'
+      }, //you may need to change the entries for 'WW' and 'MM' as well, depending on the amount of visible data
+            {
+                period: 'WW',
+                format: 'MMM DD'
+      }, {
+                period: 'MM',
+                format: 'MMM'
+      }, {
+                period: 'YYYY',
+                format: 'YYYY'
+      }
+    ]
     },
     "valueAxes": [{
         "ignoreAxisWidth": true
@@ -67,12 +95,15 @@ var chartConfig = {
         toValue: 10000,
         fillAlpha: 0.40,
         fillColor: "#FF0000"
-}]
+}],
+    "legend": {
+        "useGraphSettings": true
+    }
 };
 
 var chartConfig2 = {
     "dataLoader": {
-        "url": "datafiles/sport_sessions.json",
+        "url": "datafiles/ins.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
@@ -81,46 +112,87 @@ var chartConfig2 = {
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
-    "dataDateFormat": "YYYY-MM-DD JJ:NN",
+    "marginRight": 70,
     "graphs": [{
+        "title": "Ins Bolus",
         "type": "column",
-        "balloonText": "Duration: [[duration]] minutes <br> Type of sport: [[sport_type]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>Fat percentage: [[fat_percentage_of_calories]]",
-        "bullet": "round",
-        "bulletBorderAlpha": 1,
-        "bulletColor": "#FFFFFF",
-        "bulletSize": 5,
-        "hideBulletsCount": 50,
         "lineColor": "#000000",
-        "lineThickness": 2,
-        "title": "red line",
-        "useLineColorForBulletBorder": true,
-        "valueField": "duration"
+        "valueField": "bolus_volume_delivered",
+        "valueAxis": "v1"
+  }, {
+        "title": "Ins Basal",
+        "valueField": "basal_ins",
+        "valueAxis": "v2",
+        "lineColor": "red",
   }],
-    "chartCursor": {
-        "categoryBalloonEnabled": false
+    "chartCursor": {},
+    "chartScrollbar": {
+        "oppositeAxis": false,
+        "offset": 30
     },
-    "categoryField": "start_time",
+    "categoryField": "id",
     "categoryAxis": {
         "parseDates": true,
-        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
-        "labelsEnabled": true,
-        "tickLength": 0
+        "dateFormats": [{
+                period: 'fff',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'ss',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'mm',
+                format: 'JJ:NN'
+      }, {
+                period: 'hh',
+                format: 'JJ:NN'
+      }, {
+                period: 'DD',
+                format: 'DD/MM/YYYY'
+      }, //you may need to change the entries for 'WW' and 'MM' as well, depending on the amount of visible data
+            {
+                period: 'WW',
+                format: 'MMM DD'
+      }, {
+                period: 'MM',
+                format: 'MMM'
+      }, {
+                period: 'YYYY',
+                format: 'YYYY'
+      }
+    ]
     },
     "valueAxes": [{
-        "ignoreAxisWidth": true
-  }]
+        "id": "v1",
+        "ignoreAxisWidth": true,
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+        }, {
+        "id": "v2",
+        "ignoreAxisWidth": true,
+        "axisColor": "red",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
+        }],
+    "legend": {
+        "useGraphSettings": true
+    }
 };
 
 var chartConfig3 = {
     "dataLoader": {
+        /*SELECT diabetes.hr_data.id * 1000, heart_rate, (x + y + z) as xyz FROM diabetes.hr_data inner join diabetes.acc_data on(diabetes.hr_data.upload_id = diabetes.acc_data.upload_id);*/
         "url": "datafiles/heartRate.json",
         "format": "json",
     },
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
+    "marginRight": 70,
     "graphs": [{
         "title": "Acc data",
         "lineColor": "#000000",
@@ -139,8 +211,36 @@ var chartConfig3 = {
     },
     "categoryField": "id",
     "categoryAxis": {
+        "parseDates": true,
         "dashLength": 1,
-        "minorGridEnabled": true
+        "minorGridEnabled": true,
+        "dateFormats": [{
+                period: 'fff',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'ss',
+                format: 'JJ:NN:SS'
+      }, {
+                period: 'mm',
+                format: 'JJ:NN'
+      }, {
+                period: 'hh',
+                format: 'JJ:NN'
+      }, {
+                period: 'DD',
+                format: 'DD/MM/YYYY'
+      }, //you may need to change the entries for 'WW' and 'MM' as well, depending on the amount of visible data
+            {
+                period: 'WW',
+                format: 'MMM DD'
+      }, {
+                period: 'MM',
+                format: 'MMM'
+      }, {
+                period: 'YYYY',
+                format: 'YYYY'
+      }
+    ]
     },
     "valueAxes": [{
         "id": "v1",
@@ -156,9 +256,11 @@ var chartConfig3 = {
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
-        }]
+        }],
+    "legend": {
+        "useGraphSettings": true
+    }
 };
-
 var charts = [];
 var chart1 = AmCharts.makeChart("chartdiv", chartConfig);
 var chart2 = AmCharts.makeChart("chartdiv2", chartConfig2);
