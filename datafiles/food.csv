@@ -1,0 +1,4 @@
+id,upload_id,food,ci,ins_units,activity,emotion,id,participant_id,category_id,name,file_location,upload_timestamp
+1546387200,1,"Frietjes met bouletten in tomatensaus",200,NULL,NULL,Blij,1,1,1,"First File",%kernel.root_dir%/../web/uploads/files,"2019-01-03 10:00:00"
+1547942400,3,"2 Boterhammen met kaas",60,NULL,NULL,Stress,3,2,2,"This is difficult",%kernel.root_dir%/../web/uploads/files,"2019-01-20 20:15:03"
+1548288000,4,Tomatensoep,80,NULL,NULL,NULL,4,3,1,"This is not fun",%kernel.root_dir%/../web/uploads/files,"2019-01-26 08:26:34"

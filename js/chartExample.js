@@ -1,76 +1,27 @@
 var chartConfig = {
-/*    "dataSets" : [
-         {
-		title: "Glucose",
-		fieldMappings: [ {
-			fromField: "Historie glucose (mg/dL)",
-			toField: "Historie glucose (mg/dL)"
-		}],
-		dataLoader: {
-            "url": "datafiles/dateParsed.json",
-        "format": "json",
-        "showErrors": true,
-        "noStyles": true,
-        "async": true
-		},
-		categoryField: "Tijd"
-	}, {
-		title: "Voeding",
-		fieldMappings: [ {
-			fromField: "Ingeschatte hoeveelheid koolhydraten",
-			toField: "Ingeschatte hoeveelheid koolhydraten"
-		}, {
-			fromField: "Aantal eenheden insuline",
-			toField: "Aantal eenheden insuline"
-		} ],
-		dataLoader: {
-                    "url": "datafiles/voedingsdagboek.json",
-                    "format": "json",
-                    "showErrors": true,
-                    "noStyles": true,
-                    "async": true
-		},
-		categoryField: "Tijd"
-	}
-    ],*/
-/*        "datasets": [
-            {
-                "title": "Voedingsdagboek",
-                "dataLoader": {
-                    "url": "datafiles/voedingsdagboek.json",
-                    "format": "json",
-                    "showErrors": true,
-                    "noStyles": true,
-                    "async": true
-                }
-            },*/
-            /*{*/
     "dataLoader": {
-        "url": "datafiles/dateParsed.json",
+        "url": "datafiles/bgDatabase.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
         "async": true
     },
-/*    }]*/
-/*    ,*/
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
     "synchronizeGrid": true,
-    "dataDateFormat": "DD-MM-YYYY JJ:NN",
-        "valueAxes": [{
-            "id": "v1",
-            "axisColor": "#000000",
-            "axisThickness": 2,
-            "axisAlpha": 1,
-            "position": "left"
+    "valueAxes": [{
+        "id": "v1",
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
         }, {
-            "id": "v2",
-            "axisColor": "red",
-            "axisThickness": 2,
-            "axisAlpha": 1,
-            "position": "right"
+        "id": "v2",
+        "axisColor": "red",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
         }],
     "graphs": [{
             "valueAxis": "v1",
@@ -84,22 +35,14 @@ var chartConfig = {
             "title": "red line",
             "useLineColorForBulletBorder": true,
             "title": "Glucose values",
-            "valueField": "Historie glucose (mg/dL)"
-  }/*
-        , {
-                "valueAxis": "v2",
-                "columnWidth": 20,
-                "title": "Food",
-                "valueField": "Ingeschatte hoeveelheid koolhydraten"
-          }*/
+            "valueField": "bg"
+  }
         ],
     "chartCursor": {
         "categoryBalloonEnabled": false
     },
-    "categoryField": "Tijd",
+    "categoryField": "id",
     "categoryAxis": {
-        "parseDates": true,
-        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "labelsEnabled": true,
@@ -129,7 +72,7 @@ var chartConfig = {
 
 var chartConfig2 = {
     "dataLoader": {
-        "url": "datafiles/dateParsed.json",
+        "url": "datafiles/sport_sessions.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
@@ -138,9 +81,10 @@ var chartConfig2 = {
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
-    "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "DD/MM/YYYY JJ:NN",
+    "dataDateFormat": "YYYY-MM-DD JJ:NN",
     "graphs": [{
+        "type": "column",
+        "balloonText": "Duration: [[duration]] minutes <br> Type of sport: [[sport_type]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>Fat percentage: [[fat_percentage_of_calories]]",
         "bullet": "round",
         "bulletBorderAlpha": 1,
         "bulletColor": "#FFFFFF",
@@ -150,12 +94,12 @@ var chartConfig2 = {
         "lineThickness": 2,
         "title": "red line",
         "useLineColorForBulletBorder": true,
-        "valueField": "Historie glucose (mg/dL)"
+        "valueField": "duration"
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
     },
-    "categoryField": "Tijd",
+    "categoryField": "start_time",
     "categoryAxis": {
         "parseDates": true,
         "minPeriod": "hh",
@@ -171,41 +115,48 @@ var chartConfig2 = {
 
 var chartConfig3 = {
     "dataLoader": {
-        "url": "datafiles/dateParsed.json",
+        "url": "datafiles/heartRate.json",
         "format": "json",
     },
     "type": "serial",
     "theme": "none",
     "marginLeft": 70,
-    "pathToImages": "https://www.amcharts.com/lib/3/images/",
-    "dataDateFormat": "DD/MM/YYYY JJ:NN",
     "graphs": [{
-        "bullet": "round",
-        "bulletBorderAlpha": 1,
-        "bulletColor": "#FFFFFF",
-        "bulletSize": 5,
-        "hideBulletsCount": 50,
-        "lineThickness": 2,
+        "title": "Acc data",
         "lineColor": "#000000",
-        "title": "red line",
-        "useLineColorForBulletBorder": true,
-        "valueField": "Historie glucose (mg/dL)"
+        "valueField": "xyz",
+        "valueAxis": "v1"
+  }, {
+        "title": "Heart rate",
+        "valueField": "heart_rate",
+        "valueAxis": "v2",
+        "lineColor": "red",
   }],
     "chartCursor": {},
     "chartScrollbar": {
         "oppositeAxis": false,
         "offset": 30
     },
-    "categoryField": "Tijd",
+    "categoryField": "id",
     "categoryAxis": {
-        "parseDates": true,
-        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true
     },
     "valueAxes": [{
-        "ignoreAxisWidth": true
-  }]
+        "id": "v1",
+        "ignoreAxisWidth": true,
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+        }, {
+        "id": "v2",
+        "ignoreAxisWidth": true,
+        "axisColor": "red",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
+        }]
 };
 
 var charts = [];
