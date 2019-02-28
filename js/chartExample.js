@@ -1,7 +1,7 @@
 var chartConfig = {
     "dataLoader": {
         /* SELECT id * 1000, bg FROM diabetes.bg_data;*/
-        "url": "datafiles/bgDatabase.json",
+        "url": "datafiles/bgDatabaseChart.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
@@ -34,7 +34,6 @@ var chartConfig = {
             "hideBulletsCount": 50,
             "lineThickness": 2,
             "lineColor": "#000000",
-            "title": "red line",
             "useLineColorForBulletBorder": true,
             "title": "Glucose values",
             "valueField": "bg"
