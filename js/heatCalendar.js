@@ -57,6 +57,11 @@ function dayData(date, stats, cal2) {
             label: {
                 position: "left",
             },
+            legendColors: {
+                empty: "#ededed",
+                min: "#40ffd8",
+                max: "#f20013"
+            },
         });
 
     var calendarcontainers = document.getElementsByClassName("cal-heatmap-container");
