@@ -25,4 +25,22 @@ body {
   background: #fff;
   margin: 5px;
 }
+
+.closeButton{
+    width: 200px;
+    background-color: #fff;
+    border: 2px solid #ff3838;
+    border-radius: 5px;
+    height: 25px;
+    color: #ff3838;
+    font-weight: 700;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+
+.closeButton:hover {
+    color: #fff;
+    background-color: #ff3838;
+    transition: 0.2s;
+    
 }
