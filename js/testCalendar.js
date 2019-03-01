@@ -1,6 +1,6 @@
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-var monthsLength = [31, 30, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var monthsLengthLeap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var monthsLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var monthsLengthLeap = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var table = document.getElementById("daysTable");
 var today = new Date();
 var m = today.getMonth();
@@ -10,43 +10,51 @@ var year = today.getFullYear();
 var monthInt = m;
 var previousStart = 0;
 var nextStart = 0;
+var backPressed = false;
+var frontPressed = false;
 document.getElementsByClassName("calendarHeader")[0].innerHTML = months[m];
 setCellValue(m, calcStartDayCell(d, wd))
 document.getElementById("next").onclick = function () {
+    frontPressed = true;
     if (monthInt == 11) {
         monthInt = 0;
     }
     else monthInt++;
-    if (noLeapYear(year)) {
+    if (!leapYear(year)) {
         setCellValue(monthInt, cellNext(previousStart, monthsLength[monthInt-1]));
     }
-    if (!noLeapYear(year)) {
+    if (leapYear(year)) {
         setCellValue(monthInt, cellNext(previousStart,monthsLengthLeap[monthInt-1]));
     }
     var month = months[monthInt];
     document.getElementsByClassName("calendarHeader")[0].innerHTML = month;
+    backPressed = false;
 }
 document.getElementById("back").onclick = function () {
+    backPressed = true;
     if (monthInt == 0) monthInt = 11;
     else monthInt--;
-    if (noLeapYear(year)) {
-        setCellValue(monthInt, cellPast(monthsLength[monthInt+1], previousStart));
+    if (!leapYear(year)) {
+        setCellValue(monthInt, cellNext(previousStart, monthsLength[monthInt]));
     }
-    if (!noLeapYear(year)) {
-        setCellValue(monthInt, cellPast(monthsLengthLeap[monthInt+1], previousStart));
+    if (leapYear(year)) {
+        console.log(monthsLengthLeap[monthInt])
+        setCellValue(monthInt, cellNext(previousStart, monthsLengthLeap[monthInt]));
     }
     var month = months[monthInt];
     document.getElementsByClassName("calendarHeader")[0].innerHTML = month;
+    frontPressed = false;
 }
 
 function setCellValue(monthNr, startDayC) {
     var startDayCell = startDayC;
+    previousStart = startDayCell;
     var started = false;
     var cellValue = null;
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 7; j++) {
             if (i != 0) {
-                if (noLeapYear(year)) {
+                if (!leapYear(year)) {
                     if (cellValue >= 1 && cellValue <= monthsLength[monthNr]) {
                         cellValue++;
                     }
@@ -54,7 +62,7 @@ function setCellValue(monthNr, startDayC) {
                         cellValue = "";
                     }
                 }
-                if (!noLeapYear(year)) {
+                if (leapYear(year)) {
                     if (cellValue >= 1 && cellValue <= monthsLengthLeap[monthNr]) {
                         cellValue++;
                     }
@@ -92,7 +100,7 @@ function cellPast(vorigeCell, aantalDagenVorigeMaand){
     console.log(aantalDagenVorigeMaand)
     var volgendeStartCell = vorigeCell;
     
-    for(i =0; i < aantalDagenVorigeMaand; i++){
+    for(i = 0; i < aantalDagenVorigeMaand; i++){
         if (volgendeStartCell < 6) {
             volgendeStartCell++;
         }
@@ -106,8 +114,12 @@ function cellPast(vorigeCell, aantalDagenVorigeMaand){
 
 function cellNext(vorigeCell, aantalDagenVolgendeMaand){
     console.log(aantalDagenVolgendeMaand)
-    var volgendeStartCell = vorigeCell;
-    
+    var volgendeStartCell = null;
+    if(backPressed && frontPressed) {
+        volgendeStartCell = vorigeCell-1
+    } else {
+        volgendeStartCell = vorigeCell;
+    }
     for(i =0; i < aantalDagenVolgendeMaand; i++){
         if (volgendeStartCell > 0) {
             volgendeStartCell--;
@@ -120,9 +132,4 @@ function cellNext(vorigeCell, aantalDagenVolgendeMaand){
 }
 
 
-function noLeapYear(year) {
-    if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
-        return true;
-    }
-    return false;
-}
+function leapYear(yr) {return !((yr % 4) || (!(yr % 100) && (yr % 400)));};
