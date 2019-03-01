@@ -63,7 +63,31 @@ function dayData(date, stats, cal2) {
             },
         });
 
-    //console.log("test");
+    var calendarcontainers = document.getElementsByClassName("cal-heatmap-container");
+    var heatmapContainer = document.getElementById("cal-heatmap");
+    var closeButton = document.createElement("button");
+    closeButton.classList.add("closeButton");
+    closeButton.style.border = null;
+    closeButton.innerHTML = "Close Chart";
+
+    heatmapContainer.appendChild(closeButton);
+    var closeButtons = document.getElementsByClassName("closeButton");
+    for (i = 0; i < calendarcontainers.length; i++) {
+        calendarcontainers[i].id = "container" + i;
+        if (i != 0) {
+            closeButtons[i - 1].id = i;
+        }
+    }
+    closeButton.addEventListener("click", function(){
+        closeGraph(closeButton.id);
+    })
+}
+
+function closeGraph(id) {
+    var toRemove1 = document.getElementById("container"+id);
+    var toRemove2 = document.getElementById(id);
+    toRemove1.parentNode.removeChild(toRemove1);
+    toRemove2.parentNode.removeChild(toRemove2);
 }
 
 function setData() {
@@ -83,7 +107,6 @@ function setData() {
             //d.glucose = d["Historie glucose (mg/dL)"];
             d.glucose = +d.bg;
             d.id = +d.id;
-            //console.log(d.id + "hello");
             //console.log(d.glucose + "test2");
             //if (d.Tijd.substring(0, 2).includes("/")) {
             //    d.Tijd = "0" + d.Tijd;
