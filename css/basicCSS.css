@@ -34,8 +34,7 @@ body {
     height: 25px;
     color: #ff3838;
     font-weight: 700;
-    margin-left: 100px;
-    margin-bottom: 20px;
+    margin: 10px 0px;
 }
 
 .closeButton:hover {
