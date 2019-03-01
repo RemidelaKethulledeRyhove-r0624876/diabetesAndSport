@@ -8,6 +8,7 @@ function init(stats) {
     cal.init({
         
         id: "#cal-heatmap",
+        itemNamespace: "cal",
         data: stats,
         dataType: "txt",
         domain: "month",
@@ -22,6 +23,7 @@ function init(stats) {
         range: 12,
         verticalOrientation: true,
         onClick: function(date, nb) {
+            console.log(nb+"nb");
             var cal2 = new CalHeatMap();
             dayData(date, stats, cal2);
 	},
@@ -42,6 +44,7 @@ function dayData(date,stats, cal2){
               cal2.init({
         id: "#cal-heatmap",
         data: stats,
+        itemNamespace: "cal2",
         dataType: "txt",
         domain: "day",
         start: new Date(date),
@@ -92,6 +95,8 @@ function setData() {
             //times.push(timeStamp);
             //console.log(times+"helllloooo");
             stats[d.id] = d.glucose;
+            console.log(d.id);
+            console.log(getdhm(d.id));
             //stats.map(groupday);
             //stats.map(groupday);
             //alert(ts);
@@ -102,13 +107,16 @@ function setData() {
     })
 }
 
-var byday={};
+function getdhm(timestamp) {
+    var timestam = timestamp*1000;
+    console.log(timestam);
+        var date = new Date(timestam);
+    console.log(date);
+        var month = date.getMonth();
+        var day = date.getDay();
+        var year = date.getYear();
 
-function groupday(value, index, array)
-{
-    console.log("test");
-    var d = new Date(value['date']);
-    d = Math.floor(d.getTime()/(1000*60*60*24));
-    byday[d]=byday[d]||[];
-    byday[d].push(value);
-}
+        var formattedTime = month + '/' + day + '/' + year;
+        return formattedTime;
+    }
+
