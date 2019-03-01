@@ -51,15 +51,11 @@ function dayData(date, stats, cal2) {
             itemName: ["glucose"],
             legend: [100, 200],
             colLimit: 66,
+            displayLegend: false,
             range: 1,
             verticalOrientation: true,
             label: {
                 position: "left",
-            },
-            legendColors: {
-                empty: "#ededed",
-                min: "#40ffd8",
-                max: "#f20013"
             },
         });
 
