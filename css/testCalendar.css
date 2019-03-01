@@ -1,0 +1,91 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+    height: 100%;
+    font-family: Roboto Slab;
+}
+
+.calendarContainer {
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.calendarHeader {
+    width: 90%;
+    margin: 0px;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: #4dd9e5;
+}
+
+#daysTable {
+    height: 85%;
+    width: 90%;
+}
+
+table, th, tr {
+    margin: 0px;
+    padding: 0px;
+    border-collapse: collapse;
+}
+th {
+    width: 14.2%;
+    color: #fff;
+    background-color: #4dd9e5;
+}
+
+td {
+    border: 1px solid #dddddd; 
+    margin: 0px;
+    padding: 0px;
+}
+
+td div{
+    height: 80%;
+    margin: 0px;
+}
+
+td div h3 {
+    margin-left: 5%;
+}
+
+tr {
+    height: 15%;
+}
+
+#tableHeader {
+    height: 10%;
+}
+
+.choosMonth {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 5%;
+    background-color: #4dd9e5;
+}
+
+.choosMonth button{
+    width: 5%;
+    height: 100%;
+    border: 0px solid #eee;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 800;
+    font-size: 19px
+}
