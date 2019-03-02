@@ -1,7 +1,4 @@
 function init(stats, times) {
-    //console.log(Object.values(stats) + "help");
-    //var whut = JSON.stringify(stats);
-    //console.log(whut+ "help3");
     var cal = new CalHeatMap();
     cal.init({
 
@@ -21,7 +18,6 @@ function init(stats, times) {
         range: 12,
         verticalOrientation: true,
         onClick: function (date, nb) {
-            console.log(nb + "nb");
             var cal2 = new CalHeatMap();
             dayData(date, stats, cal2);
         },
@@ -38,31 +34,30 @@ function init(stats, times) {
 setData();
 
 function dayData(date, stats, cal2) {
-    console.log(date),
-        cal2.init({
-            id: "#cal-heatmap",
-            data: stats,
-            itemNamespace: "cal2",
-            dataType: "txt",
-            domain: "day",
-            start: new Date(date),
-            cellSize: 20,
-            legendCellSize: 20,
-            itemName: ["glucose"],
-            legend: [100, 200],
-            colLimit: 66,
-            displayLegend: false,
-            range: 1,
-            verticalOrientation: true,
-            label: {
-                position: "left",
-            },
-            legendColors: {
-                empty: "#ededed",
-                min: "#40ffd8",
-                max: "#f20013"
-            },
-        });
+    cal2.init({
+        id: "#cal-heatmap",
+        data: stats,
+        itemNamespace: "cal2",
+        dataType: "txt",
+        domain: "day",
+        start: new Date(date),
+        cellSize: 20,
+        legendCellSize: 20,
+        itemName: ["glucose"],
+        legend: [100, 200],
+        colLimit: 66,
+        displayLegend: false,
+        range: 1,
+        verticalOrientation: true,
+        label: {
+            position: "left",
+        },
+        legendColors: {
+            empty: "#ededed",
+            min: "#40ffd8",
+            max: "#f20013"
+        },
+    });
 
     var calendarcontainers = document.getElementsByClassName("cal-heatmap-container");
     var heatmapContainer = document.getElementById("cal-heatmap");
@@ -79,13 +74,13 @@ function dayData(date, stats, cal2) {
             closeButtons[i - 1].id = i;
         }
     }
-    closeButton.addEventListener("click", function(){
+    closeButton.addEventListener("click", function () {
         closeGraph(closeButton.id);
     })
 }
 
 function closeGraph(id) {
-    var toRemove1 = document.getElementById("container"+id);
+    var toRemove1 = document.getElementById("container" + id);
     var toRemove2 = document.getElementById(id);
     toRemove1.parentNode.removeChild(toRemove1);
     toRemove2.parentNode.removeChild(toRemove2);
@@ -94,68 +89,48 @@ function closeGraph(id) {
 function setData() {
     var stats = {};
     var times = {};
-    var numberofTimes= {};
+    var numberofTimes = {};
     var firsttime = true;
     var numbers = 1;
     var first = 0;
 
-    //d3.json("datafiles/dummyData.json", function (data) {
     d3.json("datafiles/bgDatabase.json", function (data) {
         var date;
         data.forEach(function (d) {
-            //console.log(d.Tijd + "test");
             //d.Tijd += ":00";
             //d.glucose = d["Historie glucose (mg/dL)"];
             d.glucose = +d.bg;
             d.id = +d.id;
-            //console.log(d.glucose + "test2");
             //if (d.Tijd.substring(0, 2).includes("/")) {
             //    d.Tijd = "0" + d.Tijd;
             //}
             //var dateString = d.Tijd.substr(3, 2) + "/" + d.Tijd.substr(0, 2) + "/" + //d.Tijd.substr(6, 4);
-            //console.log(dateString + "hello");
             //var timeStamp = moment(dateString).unix();
             //timeStamp = '"' + timeStamp + '"';
             //timeStamp = timeStamp.replace(':', "test")
-            //console.log(Object.keys(stats) + "whuut");
             //times.push(timeStamp);
-            //console.log(times+"helllloooo");
             stats[d.id] = d.glucose;
-            //console.log(d.id);
-            //console.log(getdhm(d.id) + "dh");
-            if(firsttime == true){
+            if (firsttime == true) {
                 times[d.id] = d.glucose;
                 numberofTimes[getdhm(d.id)] = numbers;
-                console.log("trueeee");
                 firsttime = false;
                 first = d.id;
             }
             var equalItem = false;
             Object.keys(times).forEach(function (item) {
-                if(getdhm(item) == getdhm(d.id) && first != d.id){
-                    //console.log("gelijktest");
-                    console.log(getdhm(item)+"itemtest");
-                    //console.log(getdhm(d.id)+"idtest");
+                if (getdhm(item) == getdhm(d.id) && first != d.id) {
                     equalItem = true;
                     times[item] += d.glucose;
-                    //console.log(numberofTimes[getdhm(d.id)]+"values");
                     numberofTimes[getdhm(d.id)] += 1;
-                    console.log(numberofTimes[getdhm(d.id)]+"values2");
                 }
-                //console.log(item+"item"); // timestamp
             });
-            if(equalItem == false && first != d.id){
-                    console.log("voegtoe");
-                    times[d.id] = d.glucose;
-                    numberofTimes[getdhm(d.id)] = numbers;
-                }
-            //stats.map(groupday);
-            //stats.map(groupday);
-            //alert(ts);
-            //console.log(times);
+            if (equalItem == false && first != d.id) {
+                times[d.id] = d.glucose;
+                numberofTimes[getdhm(d.id)] = numbers;
+            }
         });
         Object.keys(times).forEach(function (item) {
-            times[item] = times[item]/ numberofTimes[getdhm(item)];
+            times[item] = times[item] / numberofTimes[getdhm(item)];
         })
         return init(stats, times);
     })
@@ -163,7 +138,6 @@ function setData() {
 
 function getdhm(timestamp) {
     var timestam = timestamp * 1000;
-    //console.log(timestam);
     var date = new Date(timestam);
     var month = date.getMonth();
     var day = date.getDate();
