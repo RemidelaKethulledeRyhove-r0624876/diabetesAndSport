@@ -118,7 +118,7 @@ function cellNext(vorigeCell, aantalDagenVolgendeMaand){
     if(backPressed && frontPressed) {
         volgendeStartCell = vorigeCell-1
     } else {
-        volgendeStartCell = vorigeCell;
+        volgendeStartCell = vorigeCell-1;
     }
     for(i =0; i < aantalDagenVolgendeMaand; i++){
         if (volgendeStartCell > 0) {
