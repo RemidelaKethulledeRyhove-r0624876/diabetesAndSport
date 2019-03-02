@@ -48,7 +48,6 @@ document.getElementById("back").onclick = function () {
 
 function setCellValue(monthNr, startDayC) {
     var startDayCell = startDayC;
-    previousStart = startDayCell;
     var started = false;
     var cellValue = null;
     for (i = 0; i < 7; i++) {
@@ -91,13 +90,13 @@ function calcStartDayCell(dayNr, weekDayNr) {
         else startDayCell = 6;
     }
     previousStart = startDayCell;
+    console.log(startDayCell)
     return startDayCell;
 }
 
 
 
 function cellPast(vorigeCell, aantalDagenVorigeMaand){
-    console.log(aantalDagenVorigeMaand)
     var volgendeStartCell = vorigeCell;
     
     for(i = 0; i < aantalDagenVorigeMaand; i++){
@@ -105,7 +104,6 @@ function cellPast(vorigeCell, aantalDagenVorigeMaand){
             volgendeStartCell++;
         }
         else volgendeStartCell = 0;
-        console.log(volgendeStartCell)
     }
     previousStart = volgendeStartCell;
     return volgendeStartCell;
@@ -113,7 +111,6 @@ function cellPast(vorigeCell, aantalDagenVorigeMaand){
 
 
 function cellNext(vorigeCell, aantalDagenVolgendeMaand){
-    console.log(aantalDagenVolgendeMaand)
     var volgendeStartCell = null;
     if(backPressed && frontPressed) {
         volgendeStartCell = vorigeCell-1
@@ -125,7 +122,6 @@ function cellNext(vorigeCell, aantalDagenVolgendeMaand){
             volgendeStartCell--;
         }
         else volgendeStartCell = 6;
-        console.log(volgendeStartCell)
     }
     previousStart = volgendeStartCell;
     return volgendeStartCell;
