@@ -1,10 +1,10 @@
-function init(stats, times, startdate) {
+function init(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
     cal.init({
 
         id: "#cal-heatmap",
         itemNamespace: "cal",
-        data: times,
+        data: monthlyAverage,
         dataType: "txt",
         domain: "month",
         start: startdate,
@@ -19,7 +19,7 @@ function init(stats, times, startdate) {
         verticalOrientation: true,
         onClick: function (date, nb) {
             var cal2 = new CalHeatMap();
-            dayData(date, stats, cal2);
+            dayData(date, dayAverage, cal2);
         },
         label: {
             position: "left",
@@ -38,10 +38,10 @@ function destroyCalender() {
 }
 setData();
 
-function dayData(date, stats, cal2) {
+function dayData(date, dayAverage, cal2) {
     cal2.init({
         id: "#cal-heatmap",
-        data: stats,
+        data: dayAverage,
         itemNamespace: "cal2",
         dataType: "txt",
         domain: "day",
@@ -93,16 +93,18 @@ function closeGraph(id) {
 
 function setData(startdate) {
     var stats = {};
-    var times = {};
+    var monthlyAverage = {};
     var numberofTimes = {};
     var firsttime = true;
     var numbers = 1;
     var first = 0;
+
+    var dayAverage = {};
+    var numberofTimesday = {};
+    var numbersday = 1;
     if (startdate == null) {
-        console.log("testg");
         startdate = new Date(2019, 0, 1);
     }
-    console.log(startdate + "fe");
 
     d3.json("datafiles/bgDatabase.json", function (data) {
         var date;
@@ -121,28 +123,46 @@ function setData(startdate) {
             //times.push(timeStamp);
             stats[d.id] = d.glucose;
             if (firsttime == true) {
-                times[d.id] = d.glucose;
+                monthlyAverage[d.id] = d.glucose;
                 numberofTimes[getdhm(d.id)] = numbers;
+                dayAverage[d.id] = d.glucose;
+                numberofTimesday[getdhmh(d.id)] = numbersday;
                 firsttime = false;
                 first = d.id;
             }
             var equalItem = false;
-            Object.keys(times).forEach(function (item) {
+            Object.keys(monthlyAverage).forEach(function (item) {
                 if (getdhm(item) == getdhm(d.id) && first != d.id) {
                     equalItem = true;
-                    times[item] += d.glucose;
+                    monthlyAverage[item] += d.glucose;
                     numberofTimes[getdhm(d.id)] += 1;
                 }
             });
             if (equalItem == false && first != d.id) {
-                times[d.id] = d.glucose;
+                monthlyAverage[d.id] = d.glucose;
                 numberofTimes[getdhm(d.id)] = numbers;
             }
+
+            var equalItemday = false;
+            Object.keys(dayAverage).forEach(function (item) {
+                if (getdhmh(item) == getdhmh(d.id) && first != d.id) {
+                    equalItemday = true;
+                    dayAverage[item] += d.glucose;
+                    numberofTimesday[getdhmh(d.id)] += 1;
+                }
+            });
+            if (equalItemday == false && first != d.id) {
+                dayAverage[d.id] = d.glucose;
+                numberofTimesday[getdhmh(d.id)] = numbersday;
+            }
         });
-        Object.keys(times).forEach(function (item) {
-            times[item] = times[item] / numberofTimes[getdhm(item)];
+        Object.keys(monthlyAverage).forEach(function (item) {
+            monthlyAverage[item] = monthlyAverage[item] / numberofTimes[getdhm(item)];
         })
-        return init(stats, times, startdate);
+        Object.keys(dayAverage).forEach(function (item) {
+            dayAverage[item] = dayAverage[item] / numberofTimesday[getdhmh(item)];
+        })
+        return init(dayAverage, monthlyAverage, startdate);
     })
 }
 
@@ -154,5 +174,17 @@ function getdhm(timestamp) {
     var year = date.getFullYear();
 
     var formattedTime = month + '/' + day + '/' + year;
+    return formattedTime;
+}
+
+function getdhmh(timestamp) {
+    var timestam = timestamp * 1000;
+    var date = new Date(timestam);
+    var month = date.getMonth();
+    var day = date.getDate();
+    var year = date.getFullYear()
+    var hour = date.getHours();
+
+    var formattedTime = hour + '/' + month + '/' + day + '/' + year;
     return formattedTime;
 }
