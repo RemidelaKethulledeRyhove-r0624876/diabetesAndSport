@@ -1,5 +1,5 @@
-function init(stats, times) {
-    var cal = new CalHeatMap();
+function init(stats, times, startdate) {
+    cal = new CalHeatMap();
     cal.init({
 
         id: "#cal-heatmap",
@@ -7,7 +7,7 @@ function init(stats, times) {
         data: times,
         dataType: "txt",
         domain: "month",
-        start: new Date(2019, 0, 1),
+        start: startdate,
         subDomainTextFormat: "%d",
         cellSize: 20,
         legendCellSize: 20,
@@ -30,6 +30,11 @@ function init(stats, times) {
             max: "#f20013"
         },
     });
+}
+var cal = null;
+
+function destroyCalender() {
+    cal.destroy();
 }
 setData();
 
@@ -86,13 +91,18 @@ function closeGraph(id) {
     toRemove2.parentNode.removeChild(toRemove2);
 }
 
-function setData() {
+function setData(startdate) {
     var stats = {};
     var times = {};
     var numberofTimes = {};
     var firsttime = true;
     var numbers = 1;
     var first = 0;
+    if (startdate == null) {
+        console.log("testg");
+        startdate = new Date(2019, 0, 1);
+    }
+    console.log(startdate + "fe");
 
     d3.json("datafiles/bgDatabase.json", function (data) {
         var date;
@@ -132,7 +142,7 @@ function setData() {
         Object.keys(times).forEach(function (item) {
             times[item] = times[item] / numberofTimes[getdhm(item)];
         })
-        return init(stats, times);
+        return init(stats, times, startdate);
     })
 }
 

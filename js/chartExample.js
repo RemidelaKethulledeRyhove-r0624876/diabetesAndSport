@@ -294,6 +294,7 @@ function changeTresh() {
 }
 
 function zoomMap() {
+    destroyCalender();
     var dateFromTemp = document.getElementById("dateFrom").value;
     var dateToTemp = document.getElementById("dateTo").value;
 
@@ -301,6 +302,11 @@ function zoomMap() {
     var dateTo = new Date(dateToTemp)
 
     chart3.zoomToDates(dateFrom, dateTo);
+    
+      if(dateFromTemp == ""){
+        return setData(new Date(2019, 0, 1));
+    }
+    return setData(new Date(dateFrom));
 }
 
 function addCursorListeners(event) {
