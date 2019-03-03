@@ -11,7 +11,7 @@ function init(dayAverage, monthlyAverage, startdate) {
         subDomainTextFormat: "%d",
         cellSize: 20,
         legendCellSize: 20,
-        itemName: ["glucose"],
+        itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
         colLimit: 66,
         domainDynamicDimension: false,
@@ -48,7 +48,7 @@ function dayData(date, dayAverage, cal2) {
         start: new Date(date),
         cellSize: 20,
         legendCellSize: 20,
-        itemName: ["glucose"],
+        itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
         colLimit: 66,
         displayLegend: false,
@@ -92,7 +92,7 @@ function closeGraph(id) {
 }
 
 function setData(startdate) {
-    var stats = {};
+    //var stats = {};
     var monthlyAverage = {};
     var numberofTimes = {};
     var firsttime = true;
@@ -121,7 +121,7 @@ function setData(startdate) {
             //timeStamp = '"' + timeStamp + '"';
             //timeStamp = timeStamp.replace(':', "test")
             //times.push(timeStamp);
-            stats[d.id] = d.glucose;
+            //stats[d.id] = d.glucose;
             if (firsttime == true) {
                 monthlyAverage[d.id] = d.glucose;
                 numberofTimes[getdhm(d.id)] = numbers;
