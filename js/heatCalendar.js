@@ -79,6 +79,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         nextSelector: "#next",
         previousSelector: "#previous",
         verticalOrientation: true,
+        domainLabelFormat: "%b %Y",
         onClick: function (date, nb) {
             newButtons();
             document.getElementById("back").onclick = function(){
@@ -134,6 +135,7 @@ function dayData(date, dayAverage) {
         colLimit: 2,
         displayLegend: false,
         range: 1,
+        domainLabelFormat: "%d %b %Y",
         verticalOrientation: true,
         nextSelector: "#next",
         previousSelector: "#previous",
