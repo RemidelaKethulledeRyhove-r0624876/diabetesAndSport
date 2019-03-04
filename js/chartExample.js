@@ -20,7 +20,7 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
     "synchronizeGrid": true,
     "graphs": [{
         "title": "Blood glucose",
-        "lineColor": "#d84853",
+        "lineColor": "#002757",
         "lineThickness": 2,
         "valueField": "bg",
         "valueAxis": "v1"
@@ -30,7 +30,7 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         "balloonText": "Calory intake: [[ci]] <br>Food: [[food]] <br>I feel: [[emotion]]",
         "valueField": "ci",
         "valueAxis": "v2",
-        "lineColor": "#0c9b00",
+        "lineColor": "#E00049",
         "fillAlphas": 1
   }],
     "chartCursor": {
@@ -41,8 +41,8 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         "parseDates": true,
         "dashLength": 1,
         "minorGridEnabled": true,
-        "axisColor": "#959595",
-        "color": "#959595",
+        "axisColor": "#002757",
+        "color": "#002757",
         "dateFormats": [{
                 period: 'fff',
                 format: 'JJ:NN:SS'
@@ -74,16 +74,16 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
     "valueAxes": [{
         "id": "v1",
         "ignoreAxisWidth": true,
-        "axisColor": "#959595",
-        "color": "#959595",
+        "axisColor": "#002757",
+        "color": "#002757",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "left"
         }, {
         "id": "v2",
         "ignoreAxisWidth": true,
-        "axisColor": "#0c9b00",
-        "color": "#959595",
+        "axisColor": "#E00049",
+        "color": "#E00049",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
