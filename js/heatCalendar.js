@@ -24,12 +24,13 @@ function init(dayAverage, monthlyAverage, startdate) {
         previousSelector: "#previous",
         verticalOrientation: true,
         onClick: function (date, nb) {
-            console.log(nb + "nb");
-            var cal2 = new CalHeatMap();
+            dayData(date, dayAverage);
             zoom(date);
         },
         label: {
-            position: "left",
+            position: "top",
+            align: "center",
+            height: 50,
         },
         legendColors: {
             empty: "#ededed",
@@ -100,7 +101,7 @@ function monthDate(monthNr){
         dataType: "txt",
         domain: "month",
         subDomain:"x_day",
-        subDomainTextFormat: "%d",
+        subDomainTextFormat: "%h",
         start: new Date(2019, 0, 1),
         subDomainTextFormat: "%d",
         cellSize: 60,
@@ -127,19 +128,22 @@ function monthDate(monthNr){
     });
 }
 
-function dayData(date, dayAverage, cal2) {
-    cal2.init({
+function dayData(date, dayAverage) {
+    cal.destroy();
+    cal = new CalHeatMap();
+    cal.init({
         id: "#cal-heatmap",
         data: dayAverage,
         itemNamespace: "cal2",
         dataType: "txt",
         domain: "day",
+        subDomain: "x_hour",
         start: new Date(date),
-        cellSize: 20,
+        cellSize: 40,
         legendCellSize: 20,
         itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
-        colLimit: 66,
+        rowlLimit: 8,
         displayLegend: false,
         range: 1,
         verticalOrientation: true,
@@ -152,25 +156,6 @@ function dayData(date, dayAverage, cal2) {
             max: "#f20013"
         },
     });
-
-    var calendarcontainers = document.getElementsByClassName("cal-heatmap-container");
-    var heatmapContainer = document.getElementById("cal-heatmap");
-    var closeButton = document.createElement("button");
-    closeButton.classList.add("closeButton");
-    closeButton.style.border = null;
-    closeButton.innerHTML = "Close Chart";
-
-    heatmapContainer.appendChild(closeButton);
-    var closeButtons = document.getElementsByClassName("closeButton");
-    for (i = 0; i < calendarcontainers.length; i++) {
-        calendarcontainers[i].id = "container" + i;
-        if (i != 0) {
-            closeButtons[i - 1].id = i;
-        }
-    }
-    closeButton.addEventListener("click", function () {
-        closeGraph(closeButton.id);
-    })
 }
 
 function closeGraph(id) {
