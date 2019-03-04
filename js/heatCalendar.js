@@ -110,6 +110,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
 }
 
 function dayData(date, dayAverage) {
+    var i = 0;
     cal.destroy();
     cal = new CalHeatMap();
     cal.init({
@@ -131,6 +132,7 @@ function dayData(date, dayAverage) {
             }
             if(i<24){
             return date.getHours() + "h";
+            }
         },
         cellSize: 60,
         legendCellSize: 20,
