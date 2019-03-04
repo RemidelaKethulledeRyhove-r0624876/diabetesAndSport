@@ -10,7 +10,7 @@ function init(dayAverage, monthlyAverage, startdate) {
         dataType: "txt",
         domain: "month",
         subDomain:"x_day",
-        start: new Date(2019, 0, 1),
+        start: startdate,
         subDomainTextFormat: "%d",
         cellSize: 60,
         legendCellSize: 20,
