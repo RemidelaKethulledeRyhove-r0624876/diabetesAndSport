@@ -344,7 +344,7 @@ function zoomMap() {
     chart3.zoomToDates(dateFrom, dateTo);
 
     if (dateFromTemp == "") {
-        return setData(new Date(2019, 0, 1));
+        return setData(new Date());
     }
     return setData(new Date(dateFrom));
 }

@@ -169,7 +169,7 @@ function setData(startdate) {
     var numberofTimesday = {};
     var numbersday = 1;
     if (startdate == null) {
-        startdate = new Date(2019, 0, 1);
+        startdate = new Date();
     }
 
     d3.json("datafiles/bgDatabase.json", function (data) {
