@@ -1,4 +1,5 @@
 var dataset = null
+
 function init(dayAverage, monthlyAverage, startdate) {
     dataset = monthlyAverage;
     cal = new CalHeatMap();
@@ -9,7 +10,7 @@ function init(dayAverage, monthlyAverage, startdate) {
         data: monthlyAverage,
         dataType: "txt",
         domain: "month",
-        subDomain:"x_day",
+        subDomain: "x_day",
         start: startdate,
         subDomainTextFormat: "%d",
         cellSize: 60,
@@ -82,7 +83,7 @@ function zoom(date) {
     var dateFromTemp = date;
     var dateFrom = new Date(dateFromTemp);
     var dateT = new Date(dateFromTemp);
-    day = dateT.getDate()+1;
+    day = dateT.getDate() + 1;
     var timestam = dateT.setDate(day);
     var dateTo = new Date(timestam);
 
@@ -91,7 +92,7 @@ function zoom(date) {
 setData();
 
 
-function monthDate(monthNr){
+function monthDate(monthNr) {
     destroyCalender();
     cal = new CalHeatMap();
     cal.init({
@@ -100,7 +101,7 @@ function monthDate(monthNr){
         data: dataset,
         dataType: "txt",
         domain: "month",
-        subDomain:"x_day",
+        subDomain: "x_day",
         subDomainTextFormat: "%h",
         start: new Date(2019, 0, 1),
         subDomainTextFormat: "%d",
@@ -111,12 +112,14 @@ function monthDate(monthNr){
         domainDynamicDimension: false,
         range: 1,
         domainGutter: 20,
-        verticalOrientation: true/*,
-        onClick: function (date, nb) {
-            console.log(nb + "nb");
-            var cal2 = new CalHeatMap();
-            dayData(date, stats, cal2);
-        }*/,
+        verticalOrientation: true
+            /*,
+                    onClick: function (date, nb) {
+                        console.log(nb + "nb");
+                        var cal2 = new CalHeatMap();
+                        dayData(date, stats, cal2);
+                    }*/
+            ,
         label: {
             position: "left",
         },
@@ -139,6 +142,9 @@ function dayData(date, dayAverage) {
         domain: "day",
         subDomain: "x_hour",
         start: new Date(date),
+        subDomainTextFormat: function (date, value) {
+            return date.getHours() + "h";
+        },
         cellSize: 40,
         legendCellSize: 20,
         itemName: ["Historie glucose (mg/dL)"],
