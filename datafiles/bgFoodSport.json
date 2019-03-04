@@ -2,7 +2,7 @@
     {
         "id": 1546387200000,
         "bg": 23,
-        "UNIX_TIMESTAMP(start_time)": "NULL",
+        "unix": "NULL",
         "duration": "NULL",
         "sport_type": "NULL",
         "average_hr": "NULL",
@@ -11,12 +11,13 @@
         "fat_percentage_of_calories": "NULL",
         "food": "Frietjes met bouletten in tomatensaus",
         "ci": 200,
-        "emotion": "Blij"
+        "emotion": "Blij",
+        "timestam": 1546387200000
   },
     {
         "id": 1547164800000,
         "bg": 13.5,
-        "UNIX_TIMESTAMP(start_time)": "NULL",
+        "unix": "NULL",
         "duration": "NULL",
         "sport_type": "NULL",
         "average_hr": "NULL",
@@ -25,12 +26,13 @@
         "fat_percentage_of_calories": "NULL",
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "Boos"
+        "emotion": "Boos",
+        "timestam": 1547164800000
   },
     {
         "id": 1547942400000,
         "bg": 6.2,
-        "UNIX_TIMESTAMP(start_time)": "NULL",
+        "unix": "NULL",
         "duration": "NULL",
         "sport_type": "NULL",
         "average_hr": "NULL",
@@ -39,12 +41,13 @@
         "fat_percentage_of_calories": "NULL",
         "food": "2 Boterhammen met kaas",
         "ci": 60,
-        "emotion": "Stress"
+        "emotion": "Stress",
+        "timestam": 1547942400000
   },
     {
         "id": 1548288000000,
         "bg": 16.3,
-        "UNIX_TIMESTAMP(start_time)": "NULL",
+        "unix": "NULL",
         "duration": "NULL",
         "sport_type": "NULL",
         "average_hr": "NULL",
@@ -53,12 +56,13 @@
         "fat_percentage_of_calories": "NULL",
         "food": "Tomatensoep",
         "ci": 80,
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1548288000000
   },
     {
         "id": 1548633600000,
         "bg": 12.4,
-        "UNIX_TIMESTAMP(start_time)": "NULL",
+        "unix": "NULL",
         "duration": "NULL",
         "sport_type": "NULL",
         "average_hr": "NULL",
@@ -67,12 +71,13 @@
         "fat_percentage_of_calories": "NULL",
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1548633600000
   },
     {
         "id": "NULL",
         "bg": "NULL",
-        "UNIX_TIMESTAMP(start_time)": 1546603542000,
+        "unix": 1546603542000,
         "duration": 30,
         "sport_type": "running",
         "average_hr": 60,
@@ -81,12 +86,13 @@
         "fat_percentage_of_calories": 36,
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1546603542000
   },
     {
         "id": "NULL",
         "bg": "NULL",
-        "UNIX_TIMESTAMP(start_time)": 1546694974000,
+        "unix": 1546694974000,
         "duration": 60,
         "sport_type": "tennis",
         "average_hr": 74,
@@ -95,12 +101,13 @@
         "fat_percentage_of_calories": 43,
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1546694974000
   },
     {
         "id": "NULL",
         "bg": "NULL",
-        "UNIX_TIMESTAMP(start_time)": 1546886276000,
+        "unix": 1546886276000,
         "duration": 90,
         "sport_type": "football",
         "average_hr": 94,
@@ -109,12 +116,13 @@
         "fat_percentage_of_calories": 56,
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1546886276000
   },
     {
         "id": "NULL",
         "bg": "NULL",
-        "UNIX_TIMESTAMP(start_time)": 1548747995000,
+        "unix": 1548747995000,
         "duration": 120,
         "sport_type": "fitness",
         "average_hr": 76,
@@ -123,12 +131,13 @@
         "fat_percentage_of_calories": 41,
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1548747995000
   },
     {
         "id": "NULL",
         "bg": "NULL",
-        "UNIX_TIMESTAMP(start_time)": 1549398914000,
+        "unix": 1549398914000,
         "duration": 45,
         "sport_type": "running",
         "average_hr": 87,
@@ -137,6 +146,7 @@
         "fat_percentage_of_calories": 39,
         "food": "NULL",
         "ci": "NULL",
-        "emotion": "NULL"
+        "emotion": "NULL",
+        "timestam": 1549398914000
   }
 ]
