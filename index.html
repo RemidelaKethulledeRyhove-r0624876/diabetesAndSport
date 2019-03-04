@@ -22,12 +22,12 @@
 </head>
 
 <body>
- <div id="calendarButtons">
+  <div id="cal-heatmap" ></div>
+  <div id="calendarButtons">
      <button id="previous">Previous</button>
      <button id="next">Next</button>
      <button id="back" style="display: none">Back to month</button>
  </div>
-  <div id="cal-heatmap" ></div>
   <script src="js/heatCalendar.js"></script>
     <div id="inputFields">
         <div>
@@ -47,9 +47,11 @@
         <input type="button" value="Change threshold" id="btChangeTresh" onclick="changeTresh()">
     </div>
     </div>
-    
+    <h2>Blood glucose and Food intake</h2>
     <div id="chartdiv"></div>
+    <h2>Insuline Bolus and Basal</h2>
     <div id="chartdiv2"></div>
+    <h2>ACC Data and Heart rate</h2>
     <div id="chartdiv3"></div>
 </body>
 

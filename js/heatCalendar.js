@@ -82,8 +82,8 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         onClick: function (date, nb) {
             newButtons();
             document.getElementById("back").onclick = function(){
-                console.log("asdfasdfsd")
                 cal.destroy();
+                startdate = date;
                 monthDate(dayAverage, monthlyAverage, startdate);
                 newButtons();
             }
@@ -104,6 +104,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
 }
 
 function dayData(date, dayAverage) {
+    var i =0;
     cal.destroy();
     cal = new CalHeatMap();
     cal.init({
@@ -113,10 +114,18 @@ function dayData(date, dayAverage) {
         dataType: "txt",
         domain: "day",
         subDomain: "x_hour",
-        subDomainTextFormat: "%c",
         start: new Date(date),
         subDomainTextFormat: function (date) {
+            i += 1;
+            if(i ==49){
+                i=1;
+            }
+            if(i>24){
+                return i-25+"h";
+            }
+            if(i<24){
             return date.getHours() + "h";
+                }
         },
         cellSize: 60,
         legendCellSize: 20,
@@ -137,7 +146,6 @@ function dayData(date, dayAverage) {
             max: "#ff3343"
         },
     });
-    console.log(dayAverage);
 }
 
 function closeGraph(id) {

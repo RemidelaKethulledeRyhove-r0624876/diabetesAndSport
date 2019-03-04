@@ -22,7 +22,8 @@ from diabetes.bg_data as bg
     "synchronizeGrid": true,
     "graphs": [{
         "title": "Blood glucose",
-        "lineColor": "#000000",
+        "lineColor": "#002757",
+        "lineThickness": 2,
         "valueField": "bg",
         "valueAxis": "v1"
   }, {
@@ -31,7 +32,7 @@ from diabetes.bg_data as bg
         "balloonText": "Calory intake: [[ci]] <br>Food: [[food]] <br>I feel: [[emotion]]",
         "valueField": "ci",
         "valueAxis": "v2",
-        "lineColor": "red",
+        "lineColor": "#E00049",
         "fillAlphas": 1
   }, {
         "title": "Sport activities",
@@ -50,6 +51,8 @@ from diabetes.bg_data as bg
         "parseDates": true,
         "dashLength": 1,
         "minorGridEnabled": true,
+        "axisColor": "#002757",
+        "color": "#002757",
         "dateFormats": [{
                 period: 'fff',
                 format: 'JJ:NN:SS'
@@ -81,14 +84,16 @@ from diabetes.bg_data as bg
     "valueAxes": [{
         "id": "v1",
         "ignoreAxisWidth": true,
-        "axisColor": "#000000",
+        "axisColor": "#002757",
+        "color": "#002757",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "left"
         }, {
         "id": "v2",
         "ignoreAxisWidth": true,
-        "axisColor": "red",
+        "axisColor": "#E00049",
+        "color": "#E00049",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
@@ -113,7 +118,7 @@ from diabetes.bg_data as bg
             value: 0,
             toValue: 100,
             fillAlpha: 0.40,
-            fillColor: "rgba(0, 0, 255, 0.53)"
+            fillColor: "rgba(255, 255, 255, 0.53)"
 }, {
             valueAxis: "v1",
             value: 200,
