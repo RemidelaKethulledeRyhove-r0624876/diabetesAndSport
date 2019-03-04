@@ -2,43 +2,7 @@ var dataset = null
 
 function init(dayAverage, monthlyAverage, startdate) {
     dataset = monthlyAverage;
-    cal = new CalHeatMap();
-    cal.init({
-
-        id: "#cal-heatmap",
-        itemNamespace: "cal",
-        data: monthlyAverage,
-        dataType: "txt",
-        domain: "month",
-        subDomain: "x_day",
-        start: startdate,
-        subDomainTextFormat: "%d",
-        cellSize: 60,
-        legendCellSize: 20,
-        itemName: ["glucose"],
-        legend: [100, 200],
-        domainDynamicDimension: false,
-        range: 1,
-        rowLimit: 8,
-        domainGutter: 20,
-        nextSelector: "#next",
-        previousSelector: "#previous",
-        verticalOrientation: true,
-        onClick: function (date, nb) {
-            dayData(date, dayAverage);
-            zoom(date);
-        },
-        label: {
-            position: "top",
-            align: "center",
-            height: 50,
-        },
-        legendColors: {
-            empty: "#ededed",
-            min: "#40ffd8",
-            max: "#f20013"
-        },
-    });
+    monthDate(dayAverage, monthlyAverage, startdate);
     /*cal = new CalHeatMap();
     cal.init({
 
@@ -92,17 +56,17 @@ function zoom(date) {
 setData();
 
 
-function monthDate(monthNr) {
-    destroyCalender();
+function monthDate(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
     cal.init({
+
         id: "#cal-heatmap",
         itemNamespace: "cal",
-        data: dataset,
+        data: monthlyAverage,
         dataType: "txt",
         domain: "month",
-        subDomain:"x_day",
-        start: new Date(2019, 0, 1),
+        subDomain: "x_day",
+        start: startdate,
         subDomainTextFormat: "%d",
         cellSize: 60,
         legendCellSize: 20,
@@ -110,22 +74,31 @@ function monthDate(monthNr) {
         legend: [100, 200],
         domainDynamicDimension: false,
         range: 1,
+        rowLimit: 8,
         domainGutter: 20,
-        verticalOrientation: true
-            /*,
-                    onClick: function (date, nb) {
-                        console.log(nb + "nb");
-                        var cal2 = new CalHeatMap();
-                        dayData(date, stats, cal2);
-                    }*/
-            ,
+        nextSelector: "#next",
+        previousSelector: "#previous",
+        verticalOrientation: true,
+        onClick: function (date, nb) {
+            newButtons();
+            document.getElementById("back").onclick = function(){
+                console.log("asdfasdfsd")
+                cal.destroy();
+                monthDate(dayAverage, monthlyAverage, startdate);
+                newButtons();
+            }
+            dayData(date, dayAverage);
+            zoom(date);
+        },
         label: {
-            position: "left",
+            position: "top",
+            align: "center",
+            height: 50,
         },
         legendColors: {
             empty: "#ededed",
-            min: "#40ffd8",
-            max: "#f20013"
+            min: "#f8ff40",
+            max: "#ff3343"
         },
     });
 }
@@ -145,21 +118,23 @@ function dayData(date, dayAverage) {
         subDomainTextFormat: function (date, value) {
             return date.getHours() + "h";
         },
-        cellSize: 40,
+        cellSize: 60,
         legendCellSize: 20,
         itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
-        colLimit: 3,
+        colLimit: 2,
         displayLegend: false,
         range: 1,
         verticalOrientation: true,
+        nextSelector: "#next",
+        previousSelector: "#previous",
         label: {
             position: "top",
         },
         legendColors: {
             empty: "#ededed",
-            min: "#40ffd8",
-            max: "#f20013"
+            min: "#f8ff40",
+            max: "#ff3343"
         },
     });
     console.log(dayAverage);
@@ -268,4 +243,16 @@ function getdhmh(timestamp) {
 
     var formattedTime = hour + '/' + month + '/' + day + '/' + year;
     return formattedTime;
+}
+
+
+
+function newButtons(){
+    if(document.getElementById("back").style.display == "none"){
+        document.getElementById("back").style.display = "inline";
+
+    } else {
+        document.getElementById("back").style.display = "none";
+
+}
 }

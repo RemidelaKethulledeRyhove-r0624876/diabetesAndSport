@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    max-width: 500px;
 }
 
 #inputFields div p {
@@ -142,5 +143,4 @@ body {
     font-weight: 600;
     font-size: 18px;
 }
-
 
