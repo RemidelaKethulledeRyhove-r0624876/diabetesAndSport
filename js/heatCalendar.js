@@ -15,7 +15,7 @@ function init(dayAverage, monthlyAverage, startdate) {
         subDomainTextFormat: "%d",
         cellSize: 60,
         legendCellSize: 20,
-        itemName: ["glucose"],
+        itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
         domainDynamicDimension: false,
         range: 1,
@@ -92,44 +92,43 @@ function zoom(date) {
 setData();
 
 
-function monthDate(monthNr) {
-    destroyCalender();
-    cal = new CalHeatMap();
-    cal.init({
-        id: "#cal-heatmap",
-        itemNamespace: "cal",
-        data: dataset,
-        dataType: "txt",
-        domain: "month",
-        subDomain: "x_day",
-        subDomainTextFormat: "%h",
-        start: new Date(2019, 0, 1),
-        subDomainTextFormat: "%d",
-        cellSize: 60,
-        legendCellSize: 20,
-        itemName: ["glucose"],
-        legend: [100, 200],
-        domainDynamicDimension: false,
-        range: 1,
-        domainGutter: 20,
-        verticalOrientation: true
-            /*,
-                    onClick: function (date, nb) {
-                        console.log(nb + "nb");
-                        var cal2 = new CalHeatMap();
-                        dayData(date, stats, cal2);
-                    }*/
-            ,
-        label: {
-            position: "left",
-        },
-        legendColors: {
-            empty: "#ededed",
-            min: "#40ffd8",
-            max: "#f20013"
-        },
-    });
-}
+//function monthDate(monthNr) {
+//    destroyCalender();
+//    cal = new CalHeatMap();
+//    cal.init({
+//        id: "#cal-heatmap",
+//        itemNamespace: "cal",
+//        data: dataset,
+//        dataType: "txt",
+//        domain: "month",
+//        subDomain: "x_day",
+//        start: new Date(2019, 0, 1),
+//        subDomainTextFormat: "%d",
+//        cellSize: 60,
+//        legendCellSize: 20,
+//        itemName: ["glucose"],
+//        legend: [100, 200],
+//        domainDynamicDimension: false,
+//        range: 1,
+//        domainGutter: 20,
+//        verticalOrientation: true
+//            /*,
+//                    onClick: function (date, nb) {
+//                        console.log(nb + "nb");
+//                        var cal2 = new CalHeatMap();
+//                        dayData(date, stats, cal2);
+//                    }*/
+//            ,
+//        label: {
+//            position: "left",
+//        },
+//        legendColors: {
+//            empty: "#ededed",
+//            min: "#40ffd8",
+//            max: "#f20013"
+//        },
+//    });
+//}
 
 function dayData(date, dayAverage) {
     cal.destroy();
@@ -142,7 +141,7 @@ function dayData(date, dayAverage) {
         domain: "day",
         subDomain: "x_hour",
         start: new Date(date),
-        subDomainTextFormat: function (date, value) {
+        subDomainTextFormat: function (date) {
             return date.getHours() + "h";
         },
         cellSize: 40,
@@ -150,7 +149,6 @@ function dayData(date, dayAverage) {
         itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
         rowlLimit: 8,
-        displayLegend: false,
         range: 1,
         verticalOrientation: true,
         label: {
