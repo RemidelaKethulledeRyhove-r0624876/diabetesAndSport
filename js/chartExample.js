@@ -1,7 +1,13 @@
 var chartConfig = {
     "dataLoader": {
-        /* SELECT id * 1000, bg FROM diabetes.bg_data;*/
-        "url": "datafiles/bgDatabaseChart.json",
+        /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion  from diabetes.bg_data as bg 
+	left join diabetes.sport_session as sp on (bg.id = sp.id)
+    left join diabetes.diary as di on (bg.id = di.id)
+    union
+select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion   from diabetes.bg_data as bg 
+	right join diabetes.sport_session as sp on (bg.id = sp.id)
+    left join diabetes.diary as di on (bg.id = di.id)*/
+        "url": "datafiles/bgFoodSport.json",
         "format": "json",
         "showErrors": true,
         "noStyles": true,
@@ -12,33 +18,19 @@ var chartConfig = {
     "marginLeft": 70,
     "marginRight": 70,
     "synchronizeGrid": true,
-    "valueAxes": [{
-        "id": "v1",
-        "axisColor": "#000000",
-        "axisThickness": 2,
-        "axisAlpha": 1,
-        "position": "left"
-        }, {
-        "id": "v2",
-        "axisColor": "red",
-        "axisThickness": 2,
-        "axisAlpha": 1,
-        "position": "right"
-        }],
     "graphs": [{
-            "valueAxis": "v1",
-            "bullet": "round",
-            "bulletBorderAlpha": 1,
-            "bulletColor": "#FFFFFF",
-            "bulletSize": 5,
-            "hideBulletsCount": 50,
-            "lineThickness": 2,
-            "lineColor": "#000000",
-            "useLineColorForBulletBorder": true,
-            "title": "Glucose values",
-            "valueField": "bg"
-  }
-        ],
+        "title": "Blood glucose",
+        "lineColor": "#000000",
+        "valueField": "bg",
+        "valueAxis": "v1"
+  }, {
+        "title": "Food intake",
+        "type": "column",
+        "balloonText": "Calory intake: [[ci]] <br>Food: [[food]] <br>I feel: [[emotion]]",
+        "valueField": "ci",
+        "valueAxis": "v2",
+        "lineColor": "red",
+  }],
     "chartCursor": {
         "categoryBalloonEnabled": false
     },
@@ -76,25 +68,46 @@ var chartConfig = {
     ]
     },
     "valueAxes": [{
-        "ignoreAxisWidth": true
-  }],
+        "id": "v1",
+        "ignoreAxisWidth": true,
+        "axisColor": "#000000",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "left"
+        }, {
+        "id": "v2",
+        "ignoreAxisWidth": true,
+        "axisColor": "red",
+        "axisThickness": 2,
+        "axisAlpha": 1,
+        "position": "right"
+        }],
     guides: [{
-        //value axis guide
-        value: 100,
-        toValue: 200,
-        fillAlpha: .40,
-        fillColor: "#008000"
+            //value axis guide
+            valueAxis: "v1",
+            value: 100,
+            toValue: 200,
+            fillAlpha: .40,
+            fillColor: "#008000"
 }, {
-        value: 0,
-        toValue: 100,
-        fillAlpha: 0.40,
-        fillColor: "#0000FF"
+            valueAxis: "v1",
+            value: 0,
+            toValue: 100,
+            fillAlpha: 0.40,
+            fillColor: "#0000FF"
 }, {
-        value: 200,
-        toValue: 10000,
-        fillAlpha: 0.40,
-        fillColor: "#FF0000"
-}],
+            valueAxis: "v1",
+            value: 200,
+            toValue: 10000,
+            fillAlpha: 0.40,
+            fillColor: "#FF0000"
+},
+        {
+            category: "UNIX_TIMESTAMP(start_time)",
+            fillAlpha: 1,
+            fillColor: "black",
+            "balloonText": "Sport type: [[sport_type]] <br>Duration: [[duration]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>%Fat of calories: [[fat_percentage_of_calories]]"
+            }],
     "legend": {
         "useGraphSettings": true
     }
@@ -113,6 +126,7 @@ var chartConfig2 = {
     "theme": "none",
     "marginLeft": 70,
     "marginRight": 70,
+    "synchronizeGrid": true,
     "graphs": [{
         "title": "Ins Bolus",
         "type": "column",
@@ -126,10 +140,8 @@ var chartConfig2 = {
         "valueAxis": "v2",
         "lineColor": "red",
   }],
-    "chartCursor": {},
-    "chartScrollbar": {
-        "oppositeAxis": false,
-        "offset": 30
+    "chartCursor": {
+        "categoryBalloonEnabled": false
     },
     "categoryField": "id",
     "categoryAxis": {
@@ -205,7 +217,9 @@ var chartConfig3 = {
         "valueAxis": "v2",
         "lineColor": "red",
   }],
-    "chartCursor": {},
+    "chartCursor": {
+        "categoryBalloonEnabled": false
+    },
     "chartScrollbar": {
         "oppositeAxis": false,
         "offset": 30
@@ -302,8 +316,8 @@ function zoomMap() {
     var dateTo = new Date(dateToTemp)
 
     chart3.zoomToDates(dateFrom, dateTo);
-    
-      if(dateFromTemp == ""){
+
+    if (dateFromTemp == "") {
         return setData(new Date(2019, 0, 1));
     }
     return setData(new Date(dateFrom));

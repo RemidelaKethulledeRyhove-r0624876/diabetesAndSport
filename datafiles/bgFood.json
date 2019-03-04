@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1546387200000,
+    "bg": 23,
+    "food": "Frietjes met bouletten in tomatensaus",
+    "ci": 200,
+    "emotion": "Blij"
+  },
+  {
+    "id": 1547942400000,
+    "bg": 6.2,
+    "food": "2 Boterhammen met kaas",
+    "ci": 60,
+    "emotion": "Stress"
+  },
+  {
+    "id": 1548288000000,
+    "bg": 16.3,
+    "food": "Tomatensoep",
+    "ci": 80,
+    "emotion": "NULL"
+  }
+]
