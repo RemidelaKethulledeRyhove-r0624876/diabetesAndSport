@@ -22,12 +22,12 @@ function init(dayAverage, monthlyAverage, startdate) {
         domainGutter: 20,
         nextSelector: "#next",
         previousSelector: "#previous",
-        verticalOrientation: true/*,
+        verticalOrientation: true,
         onClick: function (date, nb) {
             console.log(nb + "nb");
             var cal2 = new CalHeatMap();
-            dayData(date, stats, cal2);
-        }*/,
+            zoom(date);
+        },
         label: {
             position: "left",
         },

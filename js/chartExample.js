@@ -95,7 +95,7 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
             value: 0,
             toValue: 100,
             fillAlpha: 0.40,
-            fillColor: "#0000FF"
+            fillColor: "rgba(0, 0, 255, 0.53)"
 }, {
             valueAxis: "v1",
             value: 200,
