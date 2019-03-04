@@ -4,8 +4,8 @@
     align-items: center;
     height: 150px;
     margin-top: 20px;
-    padding-bottom: 1%;
-    border-bottom: 1px solid #eee;
+    padding: 2% 0%;;
+    background-color: #9FDAF9;
 }
 #inputFields div {
     width: 45%;
@@ -24,13 +24,14 @@
     margin: 0px;
     padding: 0px;
     font-size: 15px;
-    color: #00b1ff;
+    font-weight: 600;
+    color: #E00049;
 }
 
 #inputFields div label {
     margin: 0px;
     width: 45%;
-    color: #919191;
+    color: #002757;
 }
 
 #inputFields div input {
@@ -38,34 +39,35 @@
     width: 45%;
     padding: 0px;
     border: 0px;
-    border-bottom: 1px solid #d6d6d6;
-    color: #000
+    border-bottom: 1px solid #002757;
+    color: #002757;
+    background-color: #9FDAF9;
 }
 
 #inputFields div #btnZoom {
-    border: 1.5px solid #00b1ff;
-    background-color: #00b1ff;
+    border: 1.5px solid #E00049;
+    background-color: #E00049;
     padding: 5px;
     color: #fff;
     font-family: Roboto Slab;
 }
 #inputFields div #btChangeTresh{
-    border: 1.5px solid #00b1ff;
-    background-color: #00b1ff;
+    border: 1.5px solid #E00049;
+    background-color: #E00049;
     padding: 5px;
     color: #fff;
     font-family: Roboto Slab;
 }
 
 #inputFields div #btChangeTresh:hover{
-    background-color: #fff;
-    color: #00b1ff;
+    background-color: #9FDAF9;
+    color: #E00049;
     transition: 0.2s;
 }
 
 #inputFields div #btnZoom:hover{
-    background-color: #fff;
-    color: #00b1ff;
+    background-color: #9FDAF9;
+    color: #E00049;
     transition: 0.2s;
 }
 
@@ -115,22 +117,21 @@ body {
     justify-content: center;
     height: 50px;
     align-items: center;
-    border-bottom: 1px solid #eee;
 }
 
 #calendarButtons button{
     margin: 5px;
     width: 150px;
     height: 30px;
-    border: 2px solid #00b1ff;
+    border: 2px solid #E00049;
     background: #fff;
-    color: #00b1ff;
+    color: #E00049;
     font-family: Roboto Slab;
     font-weight: bolder;
 }
 
 #calendarButtons button:hover{
-    background: #00b1ff;
+    background: #E00049;
     color: #fff;
     transition: 0.2s;
 }
@@ -147,3 +148,8 @@ body {
     font-size: 18px;
 }
 
+
+h2 {
+    text-align: center;
+    color: #002757;
+}
