@@ -1,5 +1,43 @@
+var dataset = null
 function init(dayAverage, monthlyAverage, startdate) {
+    dataset = monthlyAverage;
     cal = new CalHeatMap();
+    cal.init({
+
+        id: "#cal-heatmap",
+        itemNamespace: "cal",
+        data: monthlyAverage,
+        dataType: "txt",
+        domain: "month",
+        subDomain:"x_day",
+        start: new Date(2019, 0, 1),
+        subDomainTextFormat: "%d",
+        cellSize: 60,
+        legendCellSize: 20,
+        itemName: ["glucose"],
+        legend: [100, 200],
+        domainDynamicDimension: false,
+        range: 1,
+        rowLimit: 8,
+        domainGutter: 20,
+        nextSelector: "#next",
+        previousSelector: "#previous",
+        verticalOrientation: true/*,
+        onClick: function (date, nb) {
+            console.log(nb + "nb");
+            var cal2 = new CalHeatMap();
+            dayData(date, stats, cal2);
+        }*/,
+        label: {
+            position: "left",
+        },
+        legendColors: {
+            empty: "#ededed",
+            min: "#40ffd8",
+            max: "#f20013"
+        },
+    });
+    /*cal = new CalHeatMap();
     cal.init({
 
         id: "#cal-heatmap",
@@ -18,9 +56,52 @@ function init(dayAverage, monthlyAverage, startdate) {
         range: 12,
         verticalOrientation: true,
         onClick: function (date, nb) {
-            var cal2 = new CalHeatMap();
-            dayData(date, dayAverage, cal2);
+            monthDate(date, monthlyAverage)
         },
+        label: {
+            position: "left",
+        },
+        legendColors: {
+            empty: "#ededed",
+            min: "#40ffd8",
+            max: "#f20013"
+        },
+    });*/
+}
+var cal = null;
+
+function destroyCalender() {
+    cal.destroy();
+}
+setData();
+
+
+function monthDate(monthNr){
+    destroyCalender();
+    cal = new CalHeatMap();
+    cal.init({
+        id: "#cal-heatmap",
+        itemNamespace: "cal",
+        data: dataset,
+        dataType: "txt",
+        domain: "month",
+        subDomain:"x_day",
+        subDomainTextFormat: "%d",
+        start: new Date(2019, 0, 1),
+        subDomainTextFormat: "%d",
+        cellSize: 60,
+        legendCellSize: 20,
+        itemName: ["glucose"],
+        legend: [100, 200],
+        domainDynamicDimension: false,
+        range: 1,
+        domainGutter: 20,
+        verticalOrientation: true/*,
+        onClick: function (date, nb) {
+            console.log(nb + "nb");
+            var cal2 = new CalHeatMap();
+            dayData(date, stats, cal2);
+        }*/,
         label: {
             position: "left",
         },
@@ -31,12 +112,6 @@ function init(dayAverage, monthlyAverage, startdate) {
         },
     });
 }
-var cal = null;
-
-function destroyCalender() {
-    cal.destroy();
-}
-setData();
 
 function dayData(date, dayAverage, cal2) {
     cal2.init({
