@@ -21,7 +21,7 @@ document.getElementById("next").onclick = function () {
     }
     else monthInt++;
     if (!leapYear(year)) {
-        setCellValue(monthInt, cellNext(previousStart, monthsLength[monthInt-1]));
+        setCellValue(monthInt, cellNext(previousStart, monthsLength[monthInt-1],monthsLength[monthInt]));
     }
     if (leapYear(year)) {
         setCellValue(monthInt, cellNext(previousStart,monthsLengthLeap[monthInt-1]));
@@ -110,18 +110,14 @@ function cellPast(vorigeCell, aantalDagenVorigeMaand){
 }
 
 
-function cellNext(vorigeCell, aantalDagenVolgendeMaand){
-    var volgendeStartCell = null;
-    if(backPressed && frontPressed) {
-        volgendeStartCell = vorigeCell-1
-    } else {
-        volgendeStartCell = vorigeCell;
-    }
-    for(i =0; i < aantalDagenVolgendeMaand; i++){
-        if (volgendeStartCell > 0) {
-            volgendeStartCell--;
+function cellNext(vorigeCell, aantalDagenVolgendeMaand, aantalDagenMaand){
+    var volgendeStartCell = vorigeCell;
+    console.log(aantalDagenVolgendeMaand+aantalDagenMaand)
+    for(i =0; i < (aantalDagenVolgendeMaand+aantalDagenMaand); i++){
+        if (volgendeStartCell < 6) {
+            volgendeStartCell++;
         }
-        else volgendeStartCell = 6;
+        else volgendeStartCell = 0;
     }
     previousStart = volgendeStartCell;
     return volgendeStartCell;
