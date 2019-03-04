@@ -101,7 +101,6 @@ function monthDate(monthNr){
         dataType: "txt",
         domain: "month",
         subDomain:"x_day",
-        subDomainTextFormat: "%h",
         start: new Date(2019, 0, 1),
         subDomainTextFormat: "%d",
         cellSize: 60,
@@ -138,17 +137,18 @@ function dayData(date, dayAverage) {
         dataType: "txt",
         domain: "day",
         subDomain: "x_hour",
+        subDomainTextFormat: "%c",
         start: new Date(date),
-        cellSize: 40,
+        cellSize: 60,
         legendCellSize: 20,
         itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
-        rowlLimit: 8,
+        colLimit: 3,
         displayLegend: false,
         range: 1,
         verticalOrientation: true,
         label: {
-            position: "left",
+            position: "top",
         },
         legendColors: {
             empty: "#ededed",
@@ -156,6 +156,7 @@ function dayData(date, dayAverage) {
             max: "#f20013"
         },
     });
+    console.log(dayAverage);
 }
 
 function closeGraph(id) {

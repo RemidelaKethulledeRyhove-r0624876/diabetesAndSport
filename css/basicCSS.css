@@ -1,6 +1,69 @@
 #inputFields {
-    float: right;
-    padding: 2px;
+   display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
+    margin-top: 20px;
+}
+#inputFields div {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputFields div p {
+    width: 100%;
+    align-self: baseline;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+    color: #00b1ff;
+}
+
+#inputFields div label {
+    margin: 0px;
+    width: 45%;
+    color: #919191;
+}
+
+#inputFields div input {
+    margin: 0px;
+    width: 45%;
+    padding: 0px;
+    border: 0px;
+    border-bottom: 1px solid #d6d6d6;
+    color: #000
+}
+
+#inputFields div #btnZoom {
+    border: 1.5px solid #00b1ff;
+    background-color: #00b1ff;
+    padding: 5px;
+    color: #fff;
+    font-family: Roboto Slab;
+}
+#inputFields div #btChangeTresh{
+    border: 1.5px solid #00b1ff;
+    background-color: #00b1ff;
+    padding: 5px;
+    color: #fff;
+    font-family: Roboto Slab;
+}
+
+#inputFields div #btChangeTresh:hover{
+    background-color: #fff;
+    color: #00b1ff;
+    transition: 0.2s;
+}
+
+#inputFields div #btnZoom:hover{
+    background-color: #fff;
+    color: #00b1ff;
+    transition: 0.2s;
 }
 
 input,
@@ -11,7 +74,7 @@ label {
 body {
   font-family: Roboto Slab;
   font-size: 12px;
-    padding: 12px;
+  padding: 12px;
 }
 
 #chartdiv,
@@ -55,15 +118,15 @@ body {
     margin: 5px;
     width: 150px;
     height: 30px;
-    border: 2px solid #ffb16e;
+    border: 2px solid #00b1ff;
     background: #fff;
-    color: #ffb16e;
+    color: #00b1ff;
     font-family: Roboto Slab;
     font-weight: bolder;
 }
 
 #calendarButtons button:hover{
-    background: #ffb16e;
+    background: #00b1ff;
     color: #fff;
     transition: 0.2s;
 }
@@ -79,3 +142,5 @@ body {
     font-weight: 600;
     font-size: 18px;
 }
+
+

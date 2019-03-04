@@ -28,8 +28,8 @@
  </div>
   <div id="cal-heatmap" ></div>
   <script src="js/heatCalendar.js"></script>
-
     <div id="inputFields">
+        <div>
         <p>Zoom the map between dates:</p>
             <label for="dateFrom">Minimum value:</label>
         <input type="date" name="dateFrom" id="dateFrom"><br>
@@ -37,14 +37,16 @@
         <input type="date" name="dateTo" id="dateTo">
         <input type="button" value="Zoom" id="btnZoom" onclick="zoomMap()">
     </div>
-    <div id="inputFields">
-        <p>Change the tresshold:</p>
+    <div>
+        <p>Change the threshold:</p>
         <label for="treshhold1">Minimum value:</label>
         <input type="number" name="treshhold1" id="treshhold1"><br>
         <label for="treshhold2">Maximum value:</label>
         <input type="number" name="treshhold2" id="treshhold2">
-        <input type="button" value="Change treshholds" id="btChangeTresh" onclick="changeTresh()">
+        <input type="button" value="Change threshold" id="btChangeTresh" onclick="changeTresh()">
     </div>
+    </div>
+    
     <div id="chartdiv"></div>
     <div id="chartdiv2"></div>
     <div id="chartdiv3"></div>
