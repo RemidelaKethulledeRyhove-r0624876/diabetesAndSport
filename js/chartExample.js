@@ -30,6 +30,7 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         "valueField": "ci",
         "valueAxis": "v2",
         "lineColor": "red",
+        "fillAlphas": 1
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
@@ -133,7 +134,8 @@ var chartConfig2 = {
         "lineColor": "#000000",
         "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_deliverd]]",
         "valueField": "bolus_volume_delivered",
-        "valueAxis": "v1"
+        "valueAxis": "v1",
+        "fillAlphas": 1
   }, {
         "title": "Ins Basal",
         "valueField": "basal_ins",
