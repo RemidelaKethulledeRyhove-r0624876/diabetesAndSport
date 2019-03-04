@@ -115,7 +115,7 @@ function dayData(date, dayAverage) {
         subDomain: "x_hour",
         subDomainTextFormat: "%c",
         start: new Date(date),
-        subDomainTextFormat: function (date, value) {
+        subDomainTextFormat: function (date) {
             return date.getHours() + "h";
         },
         cellSize: 60,
