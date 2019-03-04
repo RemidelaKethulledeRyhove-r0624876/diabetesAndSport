@@ -84,11 +84,12 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         nextSelector: "#next",
         previousSelector: "#previous",
         verticalOrientation: true,
+        domainLabelFormat: "%b %Y",
         onClick: function (date, nb) {
             newButtons();
             document.getElementById("back").onclick = function(){
-                console.log("asdfasdfsd")
                 cal.destroy();
+                startdate = date;
                 monthDate(dayAverage, monthlyAverage, startdate);
                 newButtons();
             }
@@ -121,6 +122,14 @@ function dayData(date, dayAverage) {
         subDomainTextFormat: "%c",
         start: new Date(date),
         subDomainTextFormat: function (date) {
+            i += 1;
+            if(i ==49){
+                i=1;
+            }
+            if(i>24){
+                return i-25+"h";
+            }
+            if(i<24){
             return date.getHours() + "h";
         },
         cellSize: 60,
@@ -130,6 +139,7 @@ function dayData(date, dayAverage) {
         colLimit: 2,
         displayLegend: false,
         range: 1,
+        domainLabelFormat: "%d %b %Y",
         verticalOrientation: true,
         nextSelector: "#next",
         previousSelector: "#previous",
@@ -142,7 +152,6 @@ function dayData(date, dayAverage) {
             max: "#ff3343"
         },
     });
-    console.log(dayAverage);
 }
 
 function closeGraph(id) {
@@ -164,7 +173,7 @@ function setData(startdate) {
     var numberofTimesday = {};
     var numbersday = 1;
     if (startdate == null) {
-        startdate = new Date(2019, 0, 1);
+        startdate = new Date();
     }
 
     d3.json("datafiles/bgDatabase.json", function (data) {

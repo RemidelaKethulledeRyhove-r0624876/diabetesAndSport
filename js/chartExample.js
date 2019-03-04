@@ -1,10 +1,12 @@
 var chartConfig = {
     "dataLoader": {
-        /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion  from diabetes.bg_data as bg 
+        /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam
+from diabetes.bg_data as bg 
 	left join diabetes.sport_session as sp on (bg.id = sp.id)
     left join diabetes.diary as di on (bg.id = di.id)
     union
-select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion   from diabetes.bg_data as bg 
+select  bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam  
+from diabetes.bg_data as bg 
 	right join diabetes.sport_session as sp on (bg.id = sp.id)
     left join diabetes.diary as di on (bg.id = di.id)*/
         "url": "datafiles/bgFoodSport.json",
@@ -32,11 +34,19 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         "valueAxis": "v2",
         "lineColor": "#E00049",
         "fillAlphas": 1
+  }, {
+        "title": "Sport activities",
+        "balloonText": "Sport type: [[sport_type]] <br>Duration: [[duration]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>%Fat of calories: [[fat_percentage_of_calories]]",
+        "lineColor": "green",
+        "valueField": "duration",
+        "valueAxis": "v3",
+        "type": "column",
+        "fillAlphas": 1,
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
     },
-    "categoryField": "id",
+    "categoryField": "timestam",
     "categoryAxis": {
         "parseDates": true,
         "dashLength": 1,
@@ -87,6 +97,14 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
+        }, {
+        "id": "v3",
+        "axisColor": "green",
+        "axisThickness": 2,
+        "gridAlpha": 0,
+        "offset": 50,
+        "axisAlpha": 1,
+        "position": "right"
         }],
     guides: [{
             //value axis guide
@@ -111,6 +129,7 @@ select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000, duration, spor
         {
             category: "UNIX_TIMESTAMP(start_time)",
             fillAlpha: 1,
+            strokeWidth: 2,
             fillColor: "black",
             "balloonText": "Sport type: [[sport_type]] <br>Duration: [[duration]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>%Fat of calories: [[fat_percentage_of_calories]]"
             }],
@@ -137,7 +156,7 @@ var chartConfig2 = {
         "title": "Ins Bolus",
         "type": "column",
         "lineColor": "#000000",
-        "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_deliverd]]",
+        "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_delivered]]",
         "valueField": "bolus_volume_delivered",
         "valueAxis": "v1",
         "fillAlphas": 1
@@ -325,7 +344,7 @@ function zoomMap() {
     chart3.zoomToDates(dateFrom, dateTo);
 
     if (dateFromTemp == "") {
-        return setData(new Date(2019, 0, 1));
+        return setData(new Date());
     }
     return setData(new Date(dateFrom));
 }
