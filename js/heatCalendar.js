@@ -56,7 +56,9 @@ function init(dayAverage, monthlyAverage, startdate) {
         range: 12,
         verticalOrientation: true,
         onClick: function (date, nb) {
-            monthDate(date, monthlyAverage)
+            var cal2 = new CalHeatMap();
+            dayData(date, dayAverage, cal2);
+            zoom(date);
         },
         label: {
             position: "left",
@@ -72,6 +74,18 @@ var cal = null;
 
 function destroyCalender() {
     cal.destroy();
+}
+
+function zoom(date) {
+    //destroyCalender();
+    var dateFromTemp = date;
+    var dateFrom = new Date(dateFromTemp);
+    var dateT = new Date(dateFromTemp);
+    day = dateT.getDate()+1;
+    var timestam = dateT.setDate(day);
+    var dateTo = new Date(timestam);
+
+    chart3.zoomToDates(dateFrom, dateTo);
 }
 setData();
 
