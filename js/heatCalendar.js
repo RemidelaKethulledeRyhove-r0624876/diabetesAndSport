@@ -1,8 +1,13 @@
 var dataset = null
 
+
 function init(dayAverage, monthlyAverage, startdate) {
     dataset = monthlyAverage;
     monthDate(dayAverage, monthlyAverage, startdate);
+    var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+    console.log("testtesttest")
+    console.log(month)
+    document.getElementById("monthHeader").innerHTML = month;
     /*cal = new CalHeatMap();
     cal.init({
 
@@ -104,7 +109,6 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
 }
 
 function dayData(date, dayAverage) {
-    var i =0;
     cal.destroy();
     cal = new CalHeatMap();
     cal.init({
@@ -114,19 +118,10 @@ function dayData(date, dayAverage) {
         dataType: "txt",
         domain: "day",
         subDomain: "x_hour",
+        subDomainTextFormat: "%c",
         start: new Date(date),
         subDomainTextFormat: function (date) {
-            i += 1;
-            if(i ==49){
-                i=1;
-            }
-            if(i>24){
-                console.log(i);
-                return i-25+"h";
-            }
-            if(i<24){
             return date.getHours() + "h";
-                }
         },
         cellSize: 60,
         legendCellSize: 20,
@@ -257,12 +252,26 @@ function getdhmh(timestamp) {
 
 
 
-function newButtons(){
-    if(document.getElementById("back").style.display == "none"){
+function newButtons() {
+    if (document.getElementById("back").style.display == "none") {
         document.getElementById("back").style.display = "inline";
 
     } else {
         document.getElementById("back").style.display = "none";
+    }
+}
 
+document.getElementById("next").onclick = function(){
+    setTimeout(function(){
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+    document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
 }
+
+document.getElementById("previous").onclick = function(){
+    setTimeout(function(){
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+    document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
 }
+
