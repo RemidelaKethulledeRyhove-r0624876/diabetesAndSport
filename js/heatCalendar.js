@@ -82,8 +82,8 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         onClick: function (date, nb) {
             newButtons();
             document.getElementById("back").onclick = function(){
-                console.log("asdfasdfsd")
                 cal.destroy();
+                startdate = date;
                 monthDate(dayAverage, monthlyAverage, startdate);
                 newButtons();
             }
@@ -121,7 +121,6 @@ function dayData(date, dayAverage) {
                 i=1;
             }
             if(i>24){
-                console.log(i);
                 return i-25+"h";
             }
             if(i<24){
@@ -147,7 +146,6 @@ function dayData(date, dayAverage) {
             max: "#ff3343"
         },
     });
-    console.log(dayAverage);
 }
 
 function closeGraph(id) {
