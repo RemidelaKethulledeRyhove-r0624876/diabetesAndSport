@@ -1,22 +1,23 @@
-/*In dit deel vind u al de code om de kalender te initialiseren en aan te passen wanneer nodig */
-/**/
-/*variabele van de kalender als null waarde*/
+/* In dit deel vind u al de code om de kalender te initialiseren en aan te passen wanneer nodig */
+/* variabele van de kalender als null waarde*/
 var cal = null;
 
 /* setdata() wordt als eerste opgeroepen bij het laden van de pagina, toont de kalender met de huidige maand*/
 setData();
 
-
+/* Roept de methode op om de maandelijkse grafiek te tonen + zet de header van de pagina op de juiste datum*/
 function init(dayAverage, monthlyAverage, startdate) {
     monthDate(dayAverage, monthlyAverage, startdate);
     var month = document.getElementsByClassName("graph-label")[0].innerHTML;
     document.getElementById("monthHeader").innerHTML = month;
 }
 
+/* functie om de huidige kalender te verwijderen */ 
 function destroyCalender() {
     cal.destroy();
 }
 
+/* Indien men een dag kiest */
 function zoom(date) {
     var dateFromTemp = date;
     var dateFrom = new Date(dateFromTemp);
@@ -27,7 +28,6 @@ function zoom(date) {
 
     chart3.zoomToDates(dateFrom, dateTo);
 }
-
 
 function monthDate(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
@@ -141,7 +141,7 @@ function setData(startdate) {
     var numbersday = 1;
     if (startdate == null) {
         startdate = new Date();
-    }
+}
 
     d3.json("datafiles/bgFoodSport.json", function (data) {
         var date;
@@ -220,8 +220,6 @@ function getdhmh(timestamp) {
     return formattedTime;
 }
 
-
-
 function newButtons() {
     if (document.getElementById("back").style.display == "none") {
         document.getElementById("back").style.display = "inline";
@@ -234,6 +232,7 @@ function newButtons() {
 document.getElementById("next").onclick = function () {
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        zoom(new Date(month));
         document.getElementById("monthHeader").innerHTML = month;
     }, 1000)
 }
@@ -241,6 +240,7 @@ document.getElementById("next").onclick = function () {
 document.getElementById("previous").onclick = function () {
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        zoom(new Date(month));
         document.getElementById("monthHeader").innerHTML = month;
     }, 1000)
 }
