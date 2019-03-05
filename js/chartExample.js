@@ -3,7 +3,7 @@ is het overzichtelijker.*/
 var chartConfig = {
     /* Dataloader wordt gebruikt om de data te laden die je gaat gebruiken in je chart. Bij de url parameter geef je het pad naar de file, met de format parameter geef je het type van je file mee. De andere parameters zijn optioneel en dus niet verplicht.*/
     "dataLoader": {
-            /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam
+        /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam
     from diabetes.bg_data as bg 
         left join diabetes.sport_session as sp on (bg.id = sp.id)
         left join diabetes.diary as di on (bg.id = di.id)
@@ -27,7 +27,7 @@ var chartConfig = {
     /*    In de graphs parameter zet je alle grafieken die je in de chart wil laten zien.De parameters hiervoor zijn straight forward.*/
     "graphs": [{
         /*        De title variabele specifieren we zodat deze gebruikt kan worden door de automatisch gegenereerde legende.Dit vindt u verderop in de code.*/
-        "title": "Blood glucose",
+        "title": "Bloed glucose",
         "lineColor": "#002757",
         "lineThickness": 2,
         /*        Met valueField zeg je welke variabele uit je dataLoader hij moet gebruiken om de grafiek te tekenen.Dit is dus de waarde op de y - as, de waardes van de x - as specifieer je verderop in de code.*/
@@ -35,7 +35,7 @@ var chartConfig = {
         /*        Omdat de waardes van de verschillende grafieken uiteenlopend zijn zou hij niet alles mooi kunnen weergeven op dezelfde y - as.Daarom maken we voor elke grafiek een aparte y - as, dit doen we verderop in de code.Met de parameter valueAxis zeg je dus welke y - as hij moet gebruiken om de value op te displayen.*/
         "valueAxis": "v1"
   }, {
-        "title": "Food intake",
+        "title": "Voedsel inname",
         /*      Indien je geen type opgeeft gebruikt hij het standaard type van je graph. Dit is in ons geval dus serial, maar we willen sommige grafieken ook als kolom grafieken weergeven. We specifieren dus in deze aparte grafiek dat hij deze als kolom grafiek moet weergeven.*/
         "type": "column",
         /*      balloonText wordt gebruikt om data te displayen in een tekstbalon als je hovert over de waardes.Dit is meestal om extra info bovenop de valueField te displayen.Een variabele haal je uit je dataLoader met dubbele haakjes == > [[]]*/
@@ -46,8 +46,8 @@ var chartConfig = {
         /*      de variabele fillAplhas is om je grafiek in te kleuren. 1 is volledig ingekleurd en niet transparant, hoe dichter bij de nul hoe transparanter de kleur is.*/
         "fillAlphas": 1
   }, {
-        "title": "Sport activities",
-        "balloonText": "Sport type: [[sport_type]] <br>Duration: [[duration]] <br>Average heart rate: [[average_hr]] <br>Average speed: [[average_speed]] <br>Calories: [[calories]] <br>%Fat of calories: [[fat_percentage_of_calories]]",
+        "title": "Sport activiteiten",
+        "balloonText": "Sport type: [[sport_type]] <br>Duur: [[duration]] <br>Gemiddelde hartslag: [[average_hr]] <br>Gemiddelde snelheid: [[average_speed]] <br>Calorieën: [[calories]] <br>%vet van de calorieën: [[fat_percentage_of_calories]]",
         "lineColor": "green",
         "valueField": "duration",
         "valueAxis": "v3",
@@ -129,19 +129,16 @@ var chartConfig = {
     /*Omdat we tresholds moeten kunnen instellen gebruiken we hiervoor guides.Je kan verticale en horizontale guides maken.Voor de horizontale(die wij dus gebruiken) geef je een value en toValue mee.Voor de verticale doe je hetzelfde maar geef je gewoon een category mee.Deze plaatst hij dan op de waarde op de categoryAxis(x - as).*/
     guides: [{
         //value axis guide
-        valueAxis: "v1",
         value: 100,
         toValue: 200,
         fillAlpha: .40,
         fillColor: "#008000"
 }, {
-        valueAxis: "v1",
         value: 0,
         toValue: 100,
         fillAlpha: 0.40,
-        fillColor: "rgba(255, 255, 255, 0.53)"
+        fillColor: "blue"
 }, {
-        valueAxis: "v1",
         value: 200,
         toValue: 10000,
         fillAlpha: 0.40,
@@ -169,7 +166,7 @@ var chartConfig2 = {
     "marginRight": 70,
     "synchronizeGrid": true,
     "graphs": [{
-        "title": "Ins Bolus",
+        "title": "Insuline Bolus",
         "type": "column",
         "lineColor": "#000000",
         "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_delivered]]",
@@ -177,7 +174,7 @@ var chartConfig2 = {
         "valueAxis": "v1",
         "fillAlphas": 1
   }, {
-        "title": "Ins Basal",
+        "title": "Insuline Basal",
         "valueField": "basal_ins",
         "valueAxis": "v2",
         "lineColor": "red",
@@ -254,7 +251,7 @@ var chartConfig3 = {
         "valueField": "xyz",
         "valueAxis": "v1"
   }, {
-        "title": "Heart rate",
+        "title": "Hartslag",
         "valueField": "heart_rate",
         "valueAxis": "v2",
         "lineColor": "red",
@@ -344,7 +341,7 @@ function changeTresh() {
     var treshhold2 = parseFloat(document.getElementById("treshhold2").value);
 
     /*    Als deze waardes niet 0 zijn gaat hij de value en toValue van de guides aanpassen.*/
-    if (treshhold1 != 0 && treshhold2 != 0) {
+    if (treshhold1 >= 0 && treshhold2 >= 0 && treshhold1 < treshhold2) {
         charts[0].guides[0].value = treshhold1;
         charts[0].guides[0].toValue = treshhold2;
 
@@ -354,13 +351,15 @@ function changeTresh() {
 
         /*        Omdat hij de grafiek terug opnieuw moet tekenen om de veranderingen te zien gebruiken we de validateData() functie.Deze gaat basically gewoon de grafiek hertekenen en checken of alle instellingen kloppen.*/
         AmCharts.charts[0].validateData();
+    } else {
+        alert("De tresholds mogen niet kleiner zijn als 0")
     }
 }
 
 /*Om te kunnen zoomen tussen 2 verschillende data hebben we een functie gemaakt die weeral de waardes uit de juiste input velden van de index pagina binnen haalt, en dan de map gaat zoomen tussen deze data met de voorgemaakte functie zoomToDates(dateFrom, dateTo).Aangezien alle grafieken gesynchronizeerd zijn moeten we dit maar op 1 grafiek toepassen want de andere grafieken zoomen gewoon mee. Deze functie gebruiken we ook om de kalender te synchronizeren met de grafieken.*/
 function zoomMap() {
     /* Pas de header met de tijd aan bij het klikken van dde zomm-button.
-    */
+     */
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
         document.getElementById("monthHeader").innerHTML = month;

@@ -4,10 +4,10 @@
 <head>
     <title>Diabetes & Sport</title>
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
-       <link rel="stylesheet" href="css/cal-heatmap.css" />
-       <link rel="stylesheet" type="text/css" href="css/basicCSS.css">
-       <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="css/cal-heatmap.css" />
+    <link rel="stylesheet" type="text/css" href="css/basicCSS.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
@@ -21,40 +21,41 @@
 
 </head>
 <header>
-     <h1 id="monthHeader">Month</h1>
- </header>
+    <h1 id="monthHeader">Maand</h1>
+</header>
+
 <body>
- 
-  <div id="cal-heatmap" ></div>
-  <div id="calendarButtons">
-     <button id="previous">Previous</button>
-     <button id="next">Next</button>
-     <button id="back" style="display: none">Back to month</button>
- </div>
-  <script src="js/heatCalendar.js"></script>
+
+    <div id="cal-heatmap"></div>
+    <div id="calendarButtons">
+        <button id="previous">Vorige</button>
+        <button id="next">Volgende</button>
+        <button id="back" style="display: none">Terug naar maand</button>
+    </div>
+    <script src="js/heatCalendar.js"></script>
     <div id="inputFields">
         <div>
-        <p>Zoom the map between dates:</p>
+            <p>Zoom in op de grafieken tussen volgende data:</p>
             <label for="dateFrom">Minimum value:</label>
-        <input type="date" name="dateFrom" id="dateFrom"><br>
-        <label for="dateTo">Maximum value:</label>
-        <input type="date" name="dateTo" id="dateTo">
-        <input type="button" value="Zoom" id="btnZoom" onclick="zoomMap()">
+            <input type="date" name="dateFrom" id="dateFrom"><br>
+            <label for="dateTo">Maximum value:</label>
+            <input type="date" name="dateTo" id="dateTo">
+            <input type="button" value="Zoom" id="btnZoom" onclick="zoomMap()">
+        </div>
+        <div>
+            <p>Verander de grens waarden:</p>
+            <label for="treshhold1">Minimum waarde:</label>
+            <input type="number" name="treshhold1" id="treshhold1"><br>
+            <label for="treshhold2">Maximum waarde:</label>
+            <input type="number" name="treshhold2" id="treshhold2">
+            <input type="button" value="Change threshold" id="btChangeTresh" onclick="changeTresh()">
+        </div>
     </div>
-    <div>
-        <p>Change the threshold:</p>
-        <label for="treshhold1">Minimum value:</label>
-        <input type="number" name="treshhold1" id="treshhold1"><br>
-        <label for="treshhold2">Maximum value:</label>
-        <input type="number" name="treshhold2" id="treshhold2">
-        <input type="button" value="Change threshold" id="btChangeTresh" onclick="changeTresh()">
-    </div>
-    </div>
-    <h2>Blood glucose and Food intake</h2>
+    <h2>Bloed glucose waarden, voedsel inname en sport activiteiten</h2>
     <div id="chartdiv"></div>
-    <h2>Insuline Bolus and Basal</h2>
+    <h2>Insuline Bolus en Basal</h2>
     <div id="chartdiv2"></div>
-    <h2>ACC Data and Heart rate</h2>
+    <h2>ACC Data en hartslag</h2>
     <div id="chartdiv3"></div>
 </body>
 
