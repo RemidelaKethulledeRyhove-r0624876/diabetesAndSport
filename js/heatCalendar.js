@@ -1,49 +1,21 @@
 var dataset = null
+var cal = null;
+
+setData();
+
 
 function init(dayAverage, monthlyAverage, startdate) {
     dataset = monthlyAverage;
     monthDate(dayAverage, monthlyAverage, startdate);
-    /*cal = new CalHeatMap();
-    cal.init({
-
-        id: "#cal-heatmap",
-        itemNamespace: "cal",
-        data: monthlyAverage,
-        dataType: "txt",
-        domain: "month",
-        start: startdate,
-        subDomainTextFormat: "%d",
-        cellSize: 20,
-        legendCellSize: 20,
-        itemName: ["Historie glucose (mg/dL)"],
-        legend: [100, 200],
-        colLimit: 66,
-        domainDynamicDimension: false,
-        range: 12,
-        verticalOrientation: true,
-        onClick: function (date, nb) {
-            var cal2 = new CalHeatMap();
-            dayData(date, dayAverage, cal2);
-            zoom(date);
-        },
-        label: {
-            position: "left",
-        },
-        legendColors: {
-            empty: "#ededed",
-            min: "#40ffd8",
-            max: "#f20013"
-        },
-    });*/
+    var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+    document.getElementById("monthHeader").innerHTML = month;
 }
-var cal = null;
 
 function destroyCalender() {
     cal.destroy();
 }
 
 function zoom(date) {
-    //destroyCalender();
     var dateFromTemp = date;
     var dateFrom = new Date(dateFromTemp);
     var dateT = new Date(dateFromTemp);
@@ -53,17 +25,14 @@ function zoom(date) {
 
     chart3.zoomToDates(dateFrom, dateTo);
 }
-setData();
 
 
 function monthDate(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
     cal.init({
-
         id: "#cal-heatmap",
         itemNamespace: "cal",
         data: monthlyAverage,
-        dataType: "txt",
         domain: "month",
         subDomain: "x_day",
         start: startdate,
@@ -79,13 +48,15 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         nextSelector: "#next",
         previousSelector: "#previous",
         verticalOrientation: true,
+        domainLabelFormat: "%b %Y",
         onClick: function (date, nb) {
             newButtons();
-            document.getElementById("back").onclick = function(){
+            document.getElementById("back").onclick = function () {
                 cal.destroy();
                 startdate = date;
                 monthDate(dayAverage, monthlyAverage, startdate);
                 newButtons();
+                zoom(date);
             }
             dayData(date, dayAverage);
             zoom(date);
@@ -104,28 +75,28 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
 }
 
 function dayData(date, dayAverage) {
-    var i =0;
+    var i = 0;
     cal.destroy();
     cal = new CalHeatMap();
     cal.init({
         id: "#cal-heatmap",
         data: dayAverage,
         itemNamespace: "cal2",
-        dataType: "txt",
         domain: "day",
         subDomain: "x_hour",
+        subDomainTextFormat: "%c",
         start: new Date(date),
         subDomainTextFormat: function (date) {
             i += 1;
-            if(i ==49){
-                i=1;
+            if (i == 49) {
+                i = 1;
             }
-            if(i>24){
-                return i-25+"h";
+            if (i > 24) {
+                return i - 25 + "h";
             }
-            if(i<24){
-            return date.getHours() + "h";
-                }
+            if (i < 24) {
+                return date.getHours() + "h";
+            }
         },
         cellSize: 60,
         legendCellSize: 20,
@@ -134,6 +105,7 @@ function dayData(date, dayAverage) {
         colLimit: 2,
         displayLegend: false,
         range: 1,
+        domainLabelFormat: "%d %b %Y",
         verticalOrientation: true,
         nextSelector: "#next",
         previousSelector: "#previous",
@@ -156,7 +128,6 @@ function closeGraph(id) {
 }
 
 function setData(startdate) {
-    //var stats = {};
     var monthlyAverage = {};
     var numberofTimes = {};
     var firsttime = true;
@@ -167,57 +138,50 @@ function setData(startdate) {
     var numberofTimesday = {};
     var numbersday = 1;
     if (startdate == null) {
-        startdate = new Date(2019, 0, 1);
+        startdate = new Date();
     }
 
-    d3.json("datafiles/bgDatabase.json", function (data) {
+    d3.json("datafiles/bgFoodSport.json", function (data) {
         var date;
         data.forEach(function (d) {
-            //d.Tijd += ":00";
-            //d.glucose = d["Historie glucose (mg/dL)"];
             d.glucose = +d.bg;
-            d.id = +d.id;
-            //if (d.Tijd.substring(0, 2).includes("/")) {
-            //    d.Tijd = "0" + d.Tijd;
-            //}
-            //var dateString = d.Tijd.substr(3, 2) + "/" + d.Tijd.substr(0, 2) + "/" + //d.Tijd.substr(6, 4);
-            //var timeStamp = moment(dateString).unix();
-            //timeStamp = '"' + timeStamp + '"';
-            //timeStamp = timeStamp.replace(':', "test")
-            //times.push(timeStamp);
-            //stats[d.id] = d.glucose;
-            if (firsttime == true) {
-                monthlyAverage[d.id] = d.glucose;
-                numberofTimes[getdhm(d.id)] = numbers;
-                dayAverage[d.id] = d.glucose;
-                numberofTimesday[getdhmh(d.id)] = numbersday;
-                firsttime = false;
-                first = d.id;
-            }
-            var equalItem = false;
-            Object.keys(monthlyAverage).forEach(function (item) {
-                if (getdhm(item) == getdhm(d.id) && first != d.id) {
-                    equalItem = true;
-                    monthlyAverage[item] += d.glucose;
-                    numberofTimes[getdhm(d.id)] += 1;
-                }
-            });
-            if (equalItem == false && first != d.id) {
-                monthlyAverage[d.id] = d.glucose;
-                numberofTimes[getdhm(d.id)] = numbers;
-            }
 
-            var equalItemday = false;
-            Object.keys(dayAverage).forEach(function (item) {
-                if (getdhmh(item) == getdhmh(d.id) && first != d.id) {
-                    equalItemday = true;
-                    dayAverage[item] += d.glucose;
-                    numberofTimesday[getdhmh(d.id)] += 1;
+            if (d.id !== "NULL") {
+                d.id = +d.id;
+                d.id = d.id / 1000;
+                if (firsttime == true) {
+                    monthlyAverage[d.id] = d.glucose;
+                    numberofTimes[getdhm(d.id)] = numbers;
+                    dayAverage[d.id] = d.glucose;
+                    numberofTimesday[getdhmh(d.id)] = numbersday;
+                    firsttime = false;
+                    first = d.id;
                 }
-            });
-            if (equalItemday == false && first != d.id) {
-                dayAverage[d.id] = d.glucose;
-                numberofTimesday[getdhmh(d.id)] = numbersday;
+                var equalItem = false;
+                Object.keys(monthlyAverage).forEach(function (item) {
+                    if (getdhm(item) == getdhm(d.id) && first != d.id) {
+                        equalItem = true;
+                        monthlyAverage[item] += d.glucose;
+                        numberofTimes[getdhm(d.id)] += 1;
+                    }
+                });
+                if (equalItem == false && first != d.id) {
+                    monthlyAverage[d.id] = d.glucose;
+                    numberofTimes[getdhm(d.id)] = numbers;
+                }
+
+                var equalItemday = false;
+                Object.keys(dayAverage).forEach(function (item) {
+                    if (getdhmh(item) == getdhmh(d.id) && first != d.id) {
+                        equalItemday = true;
+                        dayAverage[item] += d.glucose;
+                        numberofTimesday[getdhmh(d.id)] += 1;
+                    }
+                });
+                if (equalItemday == false && first != d.id) {
+                    dayAverage[d.id] = d.glucose;
+                    numberofTimesday[getdhmh(d.id)] = numbersday;
+                }
             }
         });
         Object.keys(monthlyAverage).forEach(function (item) {
@@ -227,6 +191,7 @@ function setData(startdate) {
             dayAverage[item] = dayAverage[item] / numberofTimesday[getdhmh(item)];
         })
         return init(dayAverage, monthlyAverage, startdate);
+
     })
 }
 
@@ -255,12 +220,25 @@ function getdhmh(timestamp) {
 
 
 
-function newButtons(){
-    if(document.getElementById("back").style.display == "none"){
+function newButtons() {
+    if (document.getElementById("back").style.display == "none") {
         document.getElementById("back").style.display = "inline";
 
     } else {
         document.getElementById("back").style.display = "none";
-
+    }
 }
+
+document.getElementById("next").onclick = function () {
+    setTimeout(function () {
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
+}
+
+document.getElementById("previous").onclick = function () {
+    setTimeout(function () {
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
 }

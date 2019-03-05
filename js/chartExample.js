@@ -360,6 +360,10 @@ function changeTresh() {
 /*Om te kunnen zoomen tussen 2 verschillende data hebben we een functie gemaakt die weeral de waardes uit de juiste input velden van de index pagina binnen haalt, en dan de map gaat zoomen tussen deze data met de voorgemaakte functie zoomToDates(dateFrom, dateTo).Aangezien alle grafieken gesynchronizeerd zijn moeten we dit maar op 1 grafiek toepassen want de andere grafieken zoomen gewoon mee. Deze functie gebruiken we ook om de kalender te synchronizeren met de grafieken.*/
 function zoomMap() {
     /*    Eerst vernietigen we de huidige kalender.*/
+    setTimeout(function () {
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
     destroyCalender();
     /*    We halen de waardes binnen van de input velden als string.*/
     var dateFromTemp = document.getElementById("dateFrom").value;

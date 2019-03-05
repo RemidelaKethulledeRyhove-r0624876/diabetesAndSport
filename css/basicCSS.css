@@ -6,6 +6,7 @@
     margin-top: 20px;
     padding: 2% 0%;;
     background-color: #9FDAF9;
+    margin: 0% 2%;
 }
 #inputFields div {
     width: 45%;
@@ -79,7 +80,9 @@ label {
 body {
   font-family: Roboto Slab;
   font-size: 12px;
-  padding: 12px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 65px
 }
 
 #chartdiv,
@@ -153,3 +156,22 @@ h2 {
     text-align: center;
     color: #002757;
 }
+
+header {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    padding: 1px 0px;
+    background-color: #9FDAF9;
+    color: #002757;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    border-bottom: 1px solid #002757;
+    top: 0px;
+    font-size: 8px;
+}
+
+
+
+
