@@ -29,6 +29,12 @@ function zoom(date) {
     chart3.zoomToDates(dateFrom, dateTo);
 }
 
+function zoomOut(date){
+    console.log(date);
+    var dateFrom = new Date(date);
+    chart3.zoomToDates(dateFrom, dateFrom);
+}
+
 function monthDate(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
     cal.init({
@@ -58,7 +64,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
                 startdate = date;
                 monthDate(dayAverage, monthlyAverage, startdate);
                 newButtons();
-                zoom(date);
+                zoomOut(date);
             }
             dayData(date, dayAverage);
             zoom(date);
@@ -86,9 +92,11 @@ function dayData(date, dayAverage) {
         itemNamespace: "cal2",
         domain: "day",
         subDomain: "x_hour",
-        subDomainTextFormat: "%c",
+        //subDomainTextFormat: "%c",
         start: new Date(date),
         subDomainTextFormat: function (date) {
+            console.log(date+"whuuuuut");
+            console.log(i+"testets");
             i += 1;
             if (i == 49) {
                 i = 1;
