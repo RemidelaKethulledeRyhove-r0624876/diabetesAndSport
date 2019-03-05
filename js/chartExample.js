@@ -3,15 +3,15 @@ is het overzichtelijker.*/
 var chartConfig = {
     /* Dataloader wordt gebruikt om de data te laden die je gaat gebruiken in je chart. Bij de url parameter geef je het pad naar de file, met de format parameter geef je het type van je file mee. De andere parameters zijn optioneel en dus niet verplicht.*/
     "dataLoader": {
-        /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam
-from diabetes.bg_data as bg 
-	left join diabetes.sport_session as sp on (bg.id = sp.id)
-    left join diabetes.diary as di on (bg.id = di.id)
-    union
-select  bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam  
-from diabetes.bg_data as bg 
-	right join diabetes.sport_session as sp on (bg.id = sp.id)
-    left join diabetes.diary as di on (bg.id = di.id)*/
+            /* select bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam
+    from diabetes.bg_data as bg 
+        left join diabetes.sport_session as sp on (bg.id = sp.id)
+        left join diabetes.diary as di on (bg.id = di.id)
+        union
+    select  bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam  
+    from diabetes.bg_data as bg 
+        right join diabetes.sport_session as sp on (bg.id = sp.id)
+        left join diabetes.diary as di on (bg.id = di.id)*/
         "url": "datafiles/bgFoodSport.json",
         "format": "json",
         "showErrors": true,
@@ -404,7 +404,7 @@ function syncZoom(event) {
         }
     }
 }
-
+/*Deze functie is om de cursors te synchronizeren per chart.*/
 function handleCursorChange(event) {
     for (var x in charts) {
         if (event.chart != charts[x]) {
