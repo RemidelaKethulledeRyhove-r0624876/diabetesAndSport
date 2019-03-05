@@ -334,6 +334,10 @@ function changeTresh() {
 }
 
 function zoomMap() {
+    setTimeout(function () {
+        var month = document.getElementsByClassName("graph-label")[0].innerHTML;
+        document.getElementById("monthHeader").innerHTML = month;
+    }, 1000)
     destroyCalender();
     var dateFromTemp = document.getElementById("dateFrom").value;
     var dateToTemp = document.getElementById("dateTo").value;
