@@ -1,11 +1,11 @@
 /* In dit deel vind u al de code om de kalender te initialiseren en aan te passen wanneer nodig */
-/* variabele van de kalender als null waarde*/
+/* variabele van de kalender als null waarde */
 var cal = null;
 
-/* setdata() wordt als eerste opgeroepen bij het laden van de pagina, toont de kalender met de huidige maand*/
+/* setdata() wordt als eerste opgeroepen bij het laden van de pagina, toont de kalender met de huidige maand */
 setData();
 
-/* Roept de methode op om de maandelijkse grafiek te tonen + zet de header van de pagina op de juiste datum*/
+/* Roept de methode op om de maandelijkse kalender te tonen + zet de header van de pagina op de juiste datum */
 function init(dayAverage, monthlyAverage, startdate) {
     monthDate(dayAverage, monthlyAverage, startdate);
     var month = document.getElementsByClassName("graph-label")[0].innerHTML;
@@ -17,7 +17,7 @@ function destroyCalender() {
     cal.destroy();
 }
 
-/* Indien men een dag kiest */
+/* zoomfuctie om de grafieken mee te laten inzoomen op de bepaalde dag */
 function zoom(date) {
     var dateFromTemp = date;
     var dateFrom = new Date(dateFromTemp);
@@ -29,12 +29,14 @@ function zoom(date) {
     chart3.zoomToDates(dateFrom, dateTo);
 }
 
+/* Indien men terug wil gaan naar het maandoverzicht gaan de grafieken ook uitzoomen om heel de maand te tonen*/
 function zoomOut(date){
     console.log(date);
     var dateFrom = new Date(date);
     chart3.zoomToDates(dateFrom, dateFrom);
 }
 
+/* Met de functie monthDate maakt men de kalenders voor 1 bepaalde maand aan, de variabele dayaverage geeft een lijst terug met de gemiddelde waarden (timestamp en Historie glucose (mg/dL)) voor 1 bepaalde dag (wordt doorgegeven aan de daydate functie). De variabele monthlyAverage geeft een lijst met de gemiddelde  waarden per dag terug en wordt in deze maandelijkse kalender gebruikt. Startdate is de dag waarop de kalender moet starten. */
 function monthDate(dayAverage, monthlyAverage, startdate) {
     cal = new CalHeatMap();
     cal.init({
@@ -47,7 +49,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         subDomainTextFormat: "%d",
         cellSize: 60,
         legendCellSize: 20,
-        itemName: ["glucose"],
+        itemName: ["Historie glucose (mg/dL)"],
         legend: [100, 200],
         domainDynamicDimension: false,
         range: 1,
@@ -58,6 +60,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
         verticalOrientation: true,
         domainLabelFormat: "%b %Y",
         onClick: function (date, nb) {
+            /* Hier wordt de nieuwe grafiek per dag opgeroepen en de huidige kalender vernietigd*/
             newButtons();
             document.getElementById("back").onclick = function () {
                 cal.destroy();
@@ -82,6 +85,7 @@ function monthDate(dayAverage, monthlyAverage, startdate) {
     });
 }
 
+/* De funcie dayData wordt gebruikt om de grafieken per dag te maken. De variabele date is deze datum en de variable dayAverage is een lijst met de gemiddeldes per uur (timestamp en Historie glucose (mg/dL))  */
 function dayData(date, dayAverage) {
     var i = 0;
     cal.destroy();
@@ -92,11 +96,9 @@ function dayData(date, dayAverage) {
         itemNamespace: "cal2",
         domain: "day",
         subDomain: "x_hour",
-        //subDomainTextFormat: "%c",
         start: new Date(date),
+        /* Hier wordt berekend wat de waardes zijn van de uren om de uren in te vullen in de kalender */
         subDomainTextFormat: function (date) {
-            console.log(date+"whuuuuut");
-            console.log(i+"testets");
             i += 1;
             if (i == 49) {
                 i = 1;
@@ -130,13 +132,7 @@ function dayData(date, dayAverage) {
     });
 }
 
-function closeGraph(id) {
-    var toRemove1 = document.getElementById("container" + id);
-    var toRemove2 = document.getElementById(id);
-    toRemove1.parentNode.removeChild(toRemove1);
-    toRemove2.parentNode.removeChild(toRemove2);
-}
-
+/* Met de functie setData gaat men de 2 lijsten met data aanmaken en in het juiste formaat plaatsen, dit wordt enkel bij het laden van de pagina opgeroepen. Als output krijgen we dan deze twee lijsten met gemiddelde per dag en gemiddelde per uur ("Historie glucose (mg/dL)") met telkens de juiste timestamp bij. Indien men later naar een API-call wil veranderen moeten we dit ook hier doen en de json-file aanpassen. Na deze functie wordt automatisch de eerste maandgrafiek gemaakt. */
 function setData(startdate) {
     var monthlyAverage = {};
     var numberofTimes = {};
@@ -205,6 +201,7 @@ function setData(startdate) {
     })
 }
 
+/* getdhm is een functie die wordt gebruikt om te kunnen vergelijken in setData of de verschillende timestamps op dezelfde dag vallen*/
 function getdhm(timestamp) {
     var timestam = timestamp * 1000;
     var date = new Date(timestam);
@@ -216,6 +213,7 @@ function getdhm(timestamp) {
     return formattedTime;
 }
 
+/* getdhmh is een functie die wordt gebruikt om te kunnen vergelijken in setData of de verschillende timestamps op hetzelfde uur vallen* */
 function getdhmh(timestamp) {
     var timestam = timestamp * 1000;
     var date = new Date(timestam);
@@ -228,6 +226,7 @@ function getdhmh(timestamp) {
     return formattedTime;
 }
 
+/* de functie newbuttons zorgt ervoor dat de "terug naar maand" button enkel werkt bij de dag-kalender */
 function newButtons() {
     if (document.getElementById("back").style.display == "none") {
         document.getElementById("back").style.display = "inline";
@@ -237,6 +236,7 @@ function newButtons() {
     }
 }
 
+/* Deze functie wordt steeds uitgevoerd eens we op "volgende" drukken, deze zet de juiste nieuwe kalender en past de grafieken ook aan*/
 document.getElementById("next").onclick = function () {
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
@@ -245,6 +245,7 @@ document.getElementById("next").onclick = function () {
     }, 1000)
 }
 
+/* Deze functie wordt steeds uitgevoerd eens we op "vorige" drukken, deze zet de juiste nieuwe kalender en past de grafieken ook aan*/
 document.getElementById("previous").onclick = function () {
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
