@@ -359,6 +359,8 @@ function changeTresh() {
 
 /*Om te kunnen zoomen tussen 2 verschillende data hebben we een functie gemaakt die weeral de waardes uit de juiste input velden van de index pagina binnen haalt, en dan de map gaat zoomen tussen deze data met de voorgemaakte functie zoomToDates(dateFrom, dateTo).Aangezien alle grafieken gesynchronizeerd zijn moeten we dit maar op 1 grafiek toepassen want de andere grafieken zoomen gewoon mee. Deze functie gebruiken we ook om de kalender te synchronizeren met de grafieken.*/
 function zoomMap() {
+    /* Pas de header met de tijd aan bij het klikken van dde zomm-button.
+    */
     setTimeout(function () {
         var month = document.getElementsByClassName("graph-label")[0].innerHTML;
         document.getElementById("monthHeader").innerHTML = month;

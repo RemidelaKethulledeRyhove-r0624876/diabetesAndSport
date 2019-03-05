@@ -1,11 +1,13 @@
-var dataset = null
+/*In dit deel vind u al de code om de kalender te initialiseren en aan te passen wanneer nodig */
+/**/
+/*variabele van de kalender als null waarde*/
 var cal = null;
 
+/* setdata() wordt als eerste opgeroepen bij het laden van de pagina, toont de kalender met de huidige maand*/
 setData();
 
 
 function init(dayAverage, monthlyAverage, startdate) {
-    dataset = monthlyAverage;
     monthDate(dayAverage, monthlyAverage, startdate);
     var month = document.getElementsByClassName("graph-label")[0].innerHTML;
     document.getElementById("monthHeader").innerHTML = month;
