@@ -402,7 +402,7 @@ function syncZoom(event) {
         }
     }
 }
-
+/*Deze functie is om de cursors te synchronizeren per chart.*/
 function handleCursorChange(event) {
     for (var x in charts) {
         if (event.chart != charts[x]) {
