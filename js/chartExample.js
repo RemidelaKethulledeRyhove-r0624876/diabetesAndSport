@@ -7,11 +7,13 @@ var chartConfig = {
     from diabetes.bg_data as bg 
         left join diabetes.sport_session as sp on (bg.id = sp.id)
         left join diabetes.diary as di on (bg.id = di.id)
+        inner join diabetes.upload as up on (bg.upload_id = up.id)
         union
     select  bg.id * 1000 as id, bg, UNIX_TIMESTAMP(start_time) * 1000 as unix, duration, sport_type, average_hr,average_speed,calories,fat_percentage_of_calories,food, ci, emotion, (case when bg.id is null then UNIX_TIMESTAMP(start_time) * 1000 else bg.id * 1000 end) as timestam  
     from diabetes.bg_data as bg 
         right join diabetes.sport_session as sp on (bg.id = sp.id)
-        left join diabetes.diary as di on (bg.id = di.id)*/
+        right join diabetes.diary as di on (bg.id = di.id)
+        inner join diabetes.upload as up on (bg.upload_id = up.id)*/
         "url": "datafiles/bgFoodSport.json",
         "format": "json",
         "showErrors": true,
@@ -154,7 +156,7 @@ var chartConfig = {
 /*Voor de volgende 2 chartConfigs werkt het identiek aan de eerste chartConfig.*/
 var chartConfig2 = {
     "dataLoader": {
-        /*SELECT bol.id * 1000 as id, bolus_type, bolus_volume_selected, bolus_volume_delivered, basal_ins FROM diabetes.bolus_ins_data as bol inner join diabetes.basal_ins_data as bas on(bol.upload_id = bas.upload_id);*/
+        /*SELECT bol.id * 1000 as id, bolus_type, bolus_volume_selected, bolus_volume_delivered, basal_ins FROM diabetes.bolus_ins_data as bol left join diabetes.basal_ins_data as bas on(bol.upload_id = bas.upload_id);*/
         "url": "datafiles/ins.json",
         "format": "json",
         "showErrors": true,
@@ -240,7 +242,7 @@ var chartConfig2 = {
 
 var chartConfig3 = {
     "dataLoader": {
-        /*SELECT diabetes.hr_data.id * 1000, heart_rate, (sqrt(x^2 + y^2 + z^2)) as xyz FROM diabetes.hr_data inner join diabetes.acc_data on(diabetes.hr_data.upload_id = diabetes.acc_data.upload_id);*/
+        /*SELECT diabetes.hr_data.id * 1000, heart_rate, (sqrt(x^2 + y^2 + z^2)) as xyz FROM diabetes.hr_data left join diabetes.acc_data on(diabetes.hr_data.upload_id = diabetes.acc_data.upload_id);*/
         "url": "datafiles/heartRate.json",
         "format": "json",
     },
