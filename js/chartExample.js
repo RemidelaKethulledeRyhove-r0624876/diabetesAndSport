@@ -65,6 +65,7 @@ var chartConfig = {
     "categoryAxis": {
         /*        Aangezien we uit onze json file unix timestamps halen, worden deze ook weergegeven als timestamps op de grafiek.Met parseDates: true zeggen we dat hij deze moet omzetten naar leesbare data.*/
         "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "axisColor": "#002757",
@@ -185,6 +186,7 @@ var chartConfig2 = {
     "categoryField": "id",
     "categoryAxis": {
         "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "dateFormats": [{
@@ -266,6 +268,7 @@ var chartConfig3 = {
     "categoryField": "id",
     "categoryAxis": {
         "parseDates": true,
+        "minPeriod": "hh",
         "dashLength": 1,
         "minorGridEnabled": true,
         "dateFormats": [{
@@ -287,13 +290,13 @@ var chartConfig3 = {
             {
                 period: 'WW',
                 format: 'MMM DD'
-      }, {
+}, {
                 period: 'MM',
                 format: 'MMM'
-      }, {
+}, {
                 period: 'YYYY',
                 format: 'YYYY'
-      }
+}
     ]
     },
     "valueAxes": [{
