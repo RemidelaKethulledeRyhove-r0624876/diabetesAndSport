@@ -169,7 +169,7 @@ var chartConfig2 = {
     "graphs": [{
         "title": "Insuline Bolus",
         "type": "column",
-        "lineColor": "#000000",
+        "lineColor": "#002757",
         "balloonText": "Bolus type: [[bolus_type]] <br>Bolus volume selected: [[bolus_volume_selected]] <br>Bolus volume deliverd: [[bolus_volume_delivered]]",
         "valueField": "bolus_volume_delivered",
         "valueAxis": "v1",
@@ -178,7 +178,8 @@ var chartConfig2 = {
         "title": "Insuline Basal",
         "valueField": "basal_ins",
         "valueAxis": "v2",
-        "lineColor": "red",
+        "lineColor": "#002757",
+      "lineThickness": 2
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
@@ -220,7 +221,7 @@ var chartConfig2 = {
     "valueAxes": [{
         "id": "v1",
         "ignoreAxisWidth": true,
-        "axisColor": "#000000",
+        "axisColor": "#002757",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "left"
