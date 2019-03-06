@@ -178,8 +178,8 @@ var chartConfig2 = {
         "title": "Insuline Basal",
         "valueField": "basal_ins",
         "valueAxis": "v2",
-        "lineColor": "#002757",
-      "lineThickness": 2
+        "lineColor": "#E00049",
+        "lineThickness": 2
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
@@ -228,7 +228,7 @@ var chartConfig2 = {
         }, {
         "id": "v2",
         "ignoreAxisWidth": true,
-        "axisColor": "red",
+        "axisColor": "#E00049",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
@@ -250,14 +250,16 @@ var chartConfig3 = {
     "marginRight": 70,
     "graphs": [{
         "title": "Acc data",
-        "lineColor": "#000000",
+        "lineColor": "#002757",
         "valueField": "xyz",
-        "valueAxis": "v1"
+        "valueAxis": "v1",
+        "lineThickness": 2
   }, {
         "title": "Hartslag",
         "valueField": "heart_rate",
         "valueAxis": "v2",
-        "lineColor": "red",
+        "lineColor": "#E00049",
+        "lineThickness": 2
   }],
     "chartCursor": {
         "categoryBalloonEnabled": false
@@ -303,14 +305,14 @@ var chartConfig3 = {
     "valueAxes": [{
         "id": "v1",
         "ignoreAxisWidth": true,
-        "axisColor": "#000000",
+        "axisColor": "#002757",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "left"
         }, {
         "id": "v2",
         "ignoreAxisWidth": true,
-        "axisColor": "red",
+        "axisColor": "#E00049",
         "axisThickness": 2,
         "axisAlpha": 1,
         "position": "right"
