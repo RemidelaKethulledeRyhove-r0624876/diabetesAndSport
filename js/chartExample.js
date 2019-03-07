@@ -132,17 +132,17 @@ var chartConfig = {
     /*Omdat we tresholds moeten kunnen instellen gebruiken we hiervoor guides.Je kan verticale en horizontale guides maken.Voor de horizontale(die wij dus gebruiken) geef je een value en toValue mee.Voor de verticale doe je hetzelfde maar geef je gewoon een category mee.Deze plaatst hij dan op de waarde op de categoryAxis(x - as).*/
     guides: [{
         //value axis guide
-        value: 100,
-        toValue: 200,
+        value: 10,
+        toValue: 15,
         fillAlpha: .40,
         fillColor: "#008000"
 }, {
         value: 0,
-        toValue: 100,
+        toValue: 10,
         fillAlpha: 0.40,
         fillColor: "blue"
 }, {
-        value: 200,
+        value: 15,
         toValue: 10000,
         fillAlpha: 0.40,
         fillColor: "#FF0000"
